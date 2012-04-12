@@ -4,7 +4,7 @@ ILikeRun::Application.routes.draw do
   #
   
   root :to => 'run_logs#index'
-  #resource :run_logs, :only => [:index]
+  resource :run_logs, only: :create
   #resource :run_logs, only: [:create, :edit]
 
   #match '/my/route/:id' => "my_controller#method", :via => :get
