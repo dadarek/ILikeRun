@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "first route test" do
 
-  it "does not route anything" do
-    { get: "/" }.should_not be_routable
+  it "routes index to run_logs controller" do
+    { get: "/" }.should route_to "run_logs#index"
   end
 
 end

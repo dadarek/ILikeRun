@@ -1,6 +1,9 @@
 ILikeRun::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
+  #
+  
+  root :to => 'run_logs#index'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
