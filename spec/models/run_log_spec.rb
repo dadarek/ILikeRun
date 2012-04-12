@@ -25,4 +25,6 @@ describe RunLog do
     run_log.should be_valid
   end
 
+  pending "Test if date is today's date"
+
 end
