@@ -10,4 +10,9 @@ describe "index page" do
     page.should have_selector(".message", text: "Success")
   end 
 
+  it "does not display success before log post" do
+    visit "/"
+    page.should_not have_selector(".message", text: "Success")
+  end
+
 end

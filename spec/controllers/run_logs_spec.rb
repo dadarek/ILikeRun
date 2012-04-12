@@ -21,6 +21,11 @@ describe RunLogsController do
       it "creates a RunLog with correct date" do
         RunLog.first.created_at.to_date.should == Date.today
       end
+
+      it "stores success message in flash" do
+        flash.now[:notice].should_not be_nil
+      end
+
     end
 
     context "an INVALID post" do
@@ -33,7 +38,7 @@ describe RunLogsController do
       end
 
       it "stores an error in flash" do
-        flash.now[:notice].should_not be_nil
+        flash.now[:alert].should_not be_nil
       end
     end
 
