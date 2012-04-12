@@ -23,5 +23,17 @@ describe RunLogsController do
       end
     end
 
+    context "an INVALID post" do
+      it "should not redirect" do
+        post :create, time_ran: -1
+        response.should redirect_to root_path
+      end
+
+      it "stores an error in flash" do
+        post :create, time_ran: -1
+        flash.now[:notice].should_not be_nil
+      end
+    end
+
   end
 end

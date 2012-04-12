@@ -4,9 +4,15 @@ class RunLogsController < ApplicationController
   end
 
   def create
-    time_ran = params[:time_ran]
-    RunLog.create!( time_ran: time_ran )
-    redirect_to action: :index
+    log = RunLog.new
+    log.time_ran = params[:time_ran]
+
+    if not log.valid? then
+      redirect_to root_path, notice: 'ERROR'
+    else
+      log.save!
+      redirect_to root_path
+    end
   end
 
 end
