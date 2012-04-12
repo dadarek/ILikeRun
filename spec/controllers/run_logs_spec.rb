@@ -12,8 +12,12 @@ describe RunLogsController do
       response.should redirect_to root_path
     end
 
-    it "creates a Runlog" do
+    it "creates a RunLog with correct time_ran" do
       RunLog.first.time_ran.should == @time_ran
+    end
+
+    it "creates a RunLog with correct date" do
+      RunLog.first.created_at.to_date.should == Date.today
     end
 
   end
