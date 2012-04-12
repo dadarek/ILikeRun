@@ -4,6 +4,14 @@ ILikeRun::Application.routes.draw do
   #
   
   root :to => 'run_logs#index'
+  #resource :run_logs, :only => [:index]
+  #resource :run_logs, only: [:create, :edit]
+
+  #match '/my/route/:id' => "my_controller#method", :via => :get
+  # new, create index edit update destroy
+  # GET  POST   GET   GET  PUT    DELETE
+
+  #
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
