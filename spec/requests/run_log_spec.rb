@@ -22,6 +22,8 @@ describe "index page" do
     page.should have_selector(".alert", text: "Error!")
   end
 
-
+  it "does not display failure before post" do
+    page.should_not have_selector(".alert", text: "Error!")
+  end
 
 end
