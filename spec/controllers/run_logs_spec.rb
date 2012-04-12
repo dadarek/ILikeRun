@@ -4,7 +4,8 @@ describe RunLogsController do
 
   describe "#create" do
     before :each do
-      post :create, time_ran: 30
+      @time_ran = 30
+      post :create, time_ran: @time_ran
     end
 
     it "should redirect to home page" do
@@ -12,7 +13,7 @@ describe RunLogsController do
     end
 
     it "creates a Runlog" do
-      RunLog.should have(1).items
+      RunLog.first.time_ran.should == @time_ran
     end
 
   end
