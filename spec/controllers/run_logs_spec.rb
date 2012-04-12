@@ -10,10 +10,6 @@ describe RunLogsController do
         post :create, time_ran: @time_ran
       end
 
-      it "redirects to home page" do
-        response.should redirect_to root_path
-      end
-
       it "creates a RunLog with correct time_ran" do
         RunLog.first.time_ran.should == @time_ran
       end
@@ -31,10 +27,6 @@ describe RunLogsController do
     context "an INVALID post" do
       before :each do
         post :create, time_ran: -1
-      end
-
-      it "should not redirect" do
-        response.should redirect_to root_path
       end
 
       it "stores an error in flash" do

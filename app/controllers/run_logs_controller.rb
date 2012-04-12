@@ -1,6 +1,6 @@
 class RunLogsController < ApplicationController
 
-  def index
+  def show 
   end
 
   def create
@@ -8,11 +8,13 @@ class RunLogsController < ApplicationController
     log.time_ran = params[:time_ran]
 
     if not log.valid? then
-      redirect_to root_path, alert: 'ERROR'
+      flash[:alert] = "Error!"
     else
       log.save!
-      redirect_to root_path, notice: "Success!"
+      flash[:notice] = "Success"
     end
+
+    redirect_to action: :show
   end
 
 end

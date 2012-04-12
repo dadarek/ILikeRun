@@ -3,13 +3,12 @@ ILikeRun::Application.routes.draw do
   # first created -> highest priority.
   #
   
-  root :to => 'run_logs#index'
-  resource :run_logs, only: [:index, :create]
+  resource :run_logs, only: [:create, :show]
 
   #resource :run_logs, only: [:create, :edit]
 
   #match '/my/route/:id' => "my_controller#method", :via => :get
-  # new, create index edit update destroy
+  # new, create show edit update destroy
   # GET  POST   GET   GET  PUT    DELETE
 
   #
