@@ -2,12 +2,8 @@ Given /I am on the Run log page/ do
   visit "/run_logs"
 end
 
-When /I fill in 20 into the time ran box/ do
-  fill_in "time_ran", with: 20
-end
-
-When /I fill in -20 into the time ran box/ do
-  fill_in "time_ran", with: -20
+When /I fill in (\-?\d+) into the time ran box/ do |minutes|
+  fill_in "time_ran", with: minutes
 end
 
 When /I click the save button/ do
