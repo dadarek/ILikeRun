@@ -1,6 +1,6 @@
 Feature: Posting a new run log
   In order to track them in the future
-  As a obsessed runner
+  As an obsessed runner
   I want to be able to post how much I ran today
 
   Scenario: Posting a valid run
