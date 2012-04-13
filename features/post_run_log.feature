@@ -5,17 +5,17 @@ Feature: Posting a new run log
 
   Scenario: Posting a valid run
     Given I am on the Run log page
-    When I fill in 20 into the time ran box
+    When I enter 20 minutes for my time ran
     And I click the save button
-    Then I see a success message
+    Then I should see a success message
 
   Scenario: Posting an invalid run
     Given I am on the Run log page
-    When I fill in -20 into the time ran box
+    When I enter -30 minutes for my time ran
     And I click the save button
-    Then I see an error message
+    Then I should see an error message
 
   Scenario: Visiting the Run log page
     Given I am on the Run log page
-    Then I do not see a success message
-    And I do not see an error message
+    Then I should not see a success message
+    And I should not see an error message
