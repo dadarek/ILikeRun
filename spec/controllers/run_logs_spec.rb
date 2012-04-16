@@ -39,25 +39,31 @@ describe RunLogsController do
   end
 
   describe "#index" do
+    before :each do
+      @yesterday = RunLog.create!(time_ran: 40)
+      @yesterday.created_at = Date.today - 1.day
+      @yesterday.save
+
+      @today= RunLog.create!(time_ran: 30)
+      @today.created_at = Date.today
+      @today.save
+
+      @three_days_ago = RunLog.create!(time_ran: 20)
+      @three_days_ago.created_at = Date.today - 3.days
+      @three_days_ago.save
+    end
+
     it "initializes @run_logs to all instances of run_logs in the database." do
-      RunLog.create!(time_ran: 30)
-      RunLog.create!(time_ran: 30)
       get :index
       assigns(:run_logs).should =~ RunLog.all
     end
 
     it "sorts the run logs in reverse-chronological order" do
-      log1 = RunLog.create!(time_ran: 20)
-      log1.created_at = Date.today - 3.days
-      log1.save
-
-      log2 = RunLog.create!(time_ran: 30)
-
       get :index
-
-      x = assigns(:run_logs)
-      x[0].should == log2
-      x[1].should == log1
+      logs = assigns(:run_logs)
+      logs[0].should == @today 
+      logs[1].should == @yesterday
+      logs[2].should == @three_days_ago 
     end
   end
 
