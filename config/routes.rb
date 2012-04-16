@@ -3,15 +3,11 @@ ILikeRun::Application.routes.draw do
   # first created -> highest priority.
   #
   
-  resource :run_logs, only: [:create, :new]
+  resources :run_logs, only: [:create, :new, :index]
 
   #resource :run_logs, only: [:create, :edit]
 
   #match '/my/route/:id' => "my_controller#method", :via => :get
-  # new, create show edit update destroy
-  # GET  POST   GET   GET  PUT    DELETE
-
-  #
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
