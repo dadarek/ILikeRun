@@ -17,6 +17,5 @@ describe "run_logs/index" do
 
     rendered.should =~ Regexp.new(day1.to_s)
     rendered.should =~ Regexp.new(day2.to_s)
-
   end
 end

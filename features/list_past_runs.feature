@@ -4,7 +4,7 @@ Feature: List past runs
   I want to be able to view my run history
 
   Scenario: Viewing runs
-    Given I am on the run log history screen
-    And I have entered some runs in the past
+    Given I have entered some runs in the past
+    When I visit the run log history screen
     Then I should see the runs I entered
 
