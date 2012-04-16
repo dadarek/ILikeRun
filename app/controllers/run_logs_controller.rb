@@ -1,6 +1,7 @@
 class RunLogsController < ApplicationController
 
-  def show 
+  def new
+    @run_log = RunLog.new
   end
 
   def create

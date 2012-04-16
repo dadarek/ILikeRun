@@ -3,7 +3,7 @@ ILikeRun::Application.routes.draw do
   # first created -> highest priority.
   #
   
-  resource :run_logs, only: [:create, :show]
+  resource :run_logs, only: [:create, :new]
 
   #resource :run_logs, only: [:create, :edit]
 

@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe RunLogsController do
 
+  describe "#new" do
+    it "initializes @run_log to an dummy instance" do
+      get :new
+      assigns(:run_log).should_not be_nil
+    end
+  end
+
   describe "#create" do
 
     context "a valid post" do
