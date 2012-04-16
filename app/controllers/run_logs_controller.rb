@@ -19,7 +19,7 @@ class RunLogsController < ApplicationController
   end
 
   def index
-    @run_logs = RunLog.all
+    @run_logs = RunLog.all(order: "created_at desc")
   end
 
 end

@@ -43,7 +43,21 @@ describe RunLogsController do
       RunLog.create!(time_ran: 30)
       RunLog.create!(time_ran: 30)
       get :index
-      assigns(:run_logs).should == RunLog.all
+      assigns(:run_logs).should =~ RunLog.all
+    end
+
+    it "sorts the run logs in reverse-chronological order" do
+      log1 = RunLog.create!(time_ran: 20)
+      log1.created_at = Date.today - 3.days
+      log1.save
+
+      log2 = RunLog.create!(time_ran: 30)
+
+      get :index
+
+      x = assigns(:run_logs)
+      x[0].should == log2
+      x[1].should == log1
     end
   end
 
