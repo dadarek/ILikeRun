@@ -5,8 +5,8 @@ class RunLogsController < ApplicationController
   end
 
   def create
-    log = RunLog.new
-    log.time_ran = params[:time_ran]
+    attributes = params[:run_log]
+    log = RunLog.new(attributes)
 
     if not log.valid? then
       flash[:alert] = "Error!"
@@ -15,7 +15,7 @@ class RunLogsController < ApplicationController
       flash[:notice] = "Success"
     end
 
-    redirect_to action: :show
+    redirect_to action: :new
   end
 
 end

@@ -1,9 +1,9 @@
 Given /I am on the Run log page/ do
-  visit "/run_logs"
+  visit "/run_logs/new"
 end
 
 When /I enter (\-?\d+) minutes for my time ran/ do |minutes|
-  fill_in "time_ran", with: minutes
+  fill_in "run_log[time_ran]", with: minutes
 end
 
 When /I click the save button/ do

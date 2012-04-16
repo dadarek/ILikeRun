@@ -13,12 +13,12 @@ describe RunLogsController do
 
     context "a valid post" do
       before :each do
-        @time_ran = 30
-        post :create, time_ran: @time_ran
+        @params = { time_ran: 30 }
+        post :create, run_log: @params
       end
 
       it "creates a RunLog with correct time_ran" do
-        RunLog.first.time_ran.should == @time_ran
+        RunLog.first.time_ran.should == @params[:time_ran] 
       end
 
       it "creates a RunLog with correct date" do
@@ -32,11 +32,8 @@ describe RunLogsController do
     end
 
     context "an INVALID post" do
-      before :each do
-        post :create, time_ran: -1
-      end
-
       it "stores an error in flash" do
+        post :create, run_log: {time_ran: -1}
         flash.now[:alert].should_not be_nil
       end
     end

@@ -1,5 +1,5 @@
 Given /I am on the run log history screen/ do
-  visit '/run_logs/show'
+#  visit '/run_logs/show'
 end
 
 Given /I have entered some runs in the past/ do

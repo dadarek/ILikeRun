@@ -1,0 +1,17 @@
+
+<% if flash[:notice] %>
+  <p class="notice">
+    Success
+  </p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p class="alert">
+    Error! 
+  </p>
+<% end %>
+
+<%= form_for @run_log do |f| %>
+  <%= f.text_field :time_ran %>
+  <%= f.submit "Save" %>
+<% end %>
