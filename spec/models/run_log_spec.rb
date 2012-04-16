@@ -25,6 +25,9 @@ describe RunLog do
     run_log.should be_valid
   end
 
-  pending "Test if date is today's date"
+  it "Creates run log with today's date" do
+    run_log = RunLog.create!( time_ran: 22 )
+    run_log.created_at.to_date.should == Date.today
+  end
 
 end
