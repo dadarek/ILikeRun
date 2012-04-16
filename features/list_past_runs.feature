@@ -6,5 +6,5 @@ Feature: List past runs
   Scenario: Viewing runs
     Given I have entered some runs in the past
     When I visit the run log history screen
-    Then I should see the runs I entered
+    Then I should see those runs ordered by most-recent first
 

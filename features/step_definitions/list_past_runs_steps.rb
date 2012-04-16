@@ -4,12 +4,10 @@ end
 
 Given /I have entered some runs in the past/ do
   RunLog.create!( time_ran: 20 )
-  RunLog.create!( time_ran: 30 )
   RunLog.create!( time_ran: 40 )
+  RunLog.create!( time_ran: 30 )
 end
 
-Then /I should see the runs I entered/ do
-  page.should have_content("20")
-  page.should have_content("30")
-  page.should have_content("40")
+Then /I should see those runs ordered by most-recent first/ do
+  page.body.should =~ /30.*?40.*?20/m
 end
