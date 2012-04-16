@@ -38,11 +38,11 @@ describe RunLogsController do
     end
   end
 
-  describe "show" do
+  describe "#index" do
     it "initializes @run_logs to all instances of run_logs in the database." do
       RunLog.create!(time_ran: 30)
       RunLog.create!(time_ran: 30)
-      get :show
+      get :index
       assigns(:run_logs).should == RunLog.all
     end
   end

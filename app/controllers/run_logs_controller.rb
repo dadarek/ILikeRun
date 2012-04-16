@@ -18,7 +18,7 @@ class RunLogsController < ApplicationController
     redirect_to action: :new
   end
 
-  def show
+  def index
     @run_logs = RunLog.all
   end
 
