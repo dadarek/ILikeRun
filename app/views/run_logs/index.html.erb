@@ -1,1 +1,14 @@
 
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Minutes</th>
+  </tr>
+<% @run_logs.each do |x| %>
+
+  <tr>
+    <td><%=x.created_at.to_date%></td>
+    <td><%=x.time_ran%></td>
+  </tr>
+
+<% end %>
