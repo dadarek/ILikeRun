@@ -18,4 +18,8 @@ class RunLogsController < ApplicationController
     redirect_to action: :new
   end
 
+  def show
+    @run_logs = RunLog.all
+  end
+
 end
