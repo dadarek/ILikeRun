@@ -40,17 +40,9 @@ describe RunLogsController do
 
   describe "#index" do
     before :each do
-      @yesterday = RunLog.create!(time_ran: 40)
-      @yesterday.created_at = Date.today - 1.day
-      @yesterday.save
-
-      @today= RunLog.create!(time_ran: 30)
-      @today.created_at = Date.today
-      @today.save
-
-      @three_days_ago = RunLog.create!(time_ran: 20)
-      @three_days_ago.created_at = Date.today - 3.days
-      @three_days_ago.save
+      @yesterday = new_log(40, Date.today - 1.day)
+      @today = new_log(20, Date.today)
+      @three_days_ago = new_log(30, Date.today - 3.day)
     end
 
     it "initializes @run_logs to all instances of run_logs in the database." do
@@ -64,6 +56,13 @@ describe RunLogsController do
       logs[0].should == @today 
       logs[1].should == @yesterday
       logs[2].should == @three_days_ago 
+    end
+
+    def new_log(time_ran, day)
+      result = RunLog.create!(time_ran: 20)
+      result.created_at = day
+      result.save
+      result
     end
   end
 
