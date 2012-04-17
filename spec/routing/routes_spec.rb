@@ -27,5 +27,9 @@ describe "route tests" do
     )
   end
 
+  it "routes root to login page" do
+    { get: "/" }.should route_to("users#login")
+  end
+
 end
 

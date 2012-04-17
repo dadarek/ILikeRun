@@ -6,7 +6,7 @@ ILikeRun::Application.routes.draw do
   resources :run_logs, only: [:create, :new, :index]
 
   match '/users/login' => 'users#login', :via => :get
-
+  root :to => 'users#login'
 
   #resource :run_logs, only: [:create, :edit]
 
