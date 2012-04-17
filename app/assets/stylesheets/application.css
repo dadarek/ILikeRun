@@ -11,3 +11,105 @@
  *= require_self
  *= require_tree .
 */
+body
+{
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    font-family: verdana, arial, helvetica;
+}
+
+div.container {
+  margin: 5px auto;
+  padding: 10px;
+  width: 900px;
+  border: 1px solid #000000;
+}
+
+div.header {
+  border-bottom: 1px solid #000000;
+  padding-bottom: 20px;
+
+  h1 {
+    float: left;
+    font-size: 36px;
+    margin: 0;
+    padding: 0;
+  }
+
+  a { 
+    float: right;
+    margin: 10px 20px 0 0;
+  }
+}
+
+div.main {
+  padding: 20px 0;
+
+  h2 {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+div.footer {
+  border-top: 1px solid #000000;
+  padding: 5px 0;
+}
+
+table {
+  margin: 0 auto;
+  border: 1px solid #000000;
+
+  th {
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 14px;
+  }
+
+  tr:nth-child(2n+1) {
+    background-color: #EEEEEE;
+  }
+
+  tr:nth-child(2n) {
+    background-color: #DDDDDD;
+  }
+
+  th, td {
+    padding: 5px;
+  }
+
+}
+
+
+a.button {
+  color: #FFFFFF;
+  background-color: #000000;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000000;
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+}
+
+/* CLEARING
+----------------------------------------------------------*/
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+/*----------------------------------------------------------*/
