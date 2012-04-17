@@ -1,13 +1,5 @@
 require 'spec_helper'
 
-describe "run_logs/new" do
-  it "renders a link to the history page" do
-    assign(:run_log, RunLog.new)
-    render
-    rendered.should have_xpath("//a[text()='History']")
-  end
-end
-
 describe "run_logs/index" do
   it "renders date and minutes for each run log" do
     day1 = Date.today
