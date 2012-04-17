@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "route tests" do
 
-  it "only allows new, create and list" do
+  it "run_logs only allows new, create and list" do
     {post: "/run_logs"}.should route_to "run_logs#create"
     {get: "/run_logs"}.should route_to "run_logs#index"
     {get: "/run_logs/new"}.should route_to "run_logs#new"
@@ -14,8 +14,9 @@ describe "route tests" do
 
   end
 
-  it "routes User actions correctly" do
+  it "user only allows get and post to login" do
     {get: "/users/login"}.should route_to "users#login"
+    {post: "/users/login"}.should route_to "users#authenticate"
   end
 
   it "routes root to login page" do
