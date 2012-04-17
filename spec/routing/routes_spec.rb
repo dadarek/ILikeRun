@@ -20,5 +20,12 @@ describe "route tests" do
 
   end
 
+  it "routes User actions correctly" do
+    { get: "/users/login" }.should route_to(
+      controller: "users",
+      action: "login"
+    )
+  end
+
 end
 
