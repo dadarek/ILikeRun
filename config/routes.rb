@@ -9,10 +9,6 @@ ILikeRun::Application.routes.draw do
   match '/users/login' => 'users#authenticate', :via => :post
   root :to => 'users#login'
 
-  #resource :run_logs, only: [:create, :edit]
-
-  #match '/my/route/:id' => "my_controller#method", :via => :get
-
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
