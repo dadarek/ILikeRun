@@ -92,13 +92,32 @@ a.button {
   background-color: #000000;
   padding: 5px 10px;
   text-decoration: none;
+  border: 1px solid #000000;
 }
 
 a:hover {
   color: #000000;
   background-color: #FFFFFF;
-  border: 1px solid #000000;
 }
+
+.info {
+  font-style: italic;
+}
+
+.notice {
+  color: #007700;
+  border: 1px solid #007700;
+  padding: 15px;
+  background-color: #DDFFDD;
+}
+
+.alert {
+  color: #770000;
+  border: 1px solid #770000;
+  padding: 15px;
+  background-color: #FFDDDD;
+}
+
 
 /* CLEARING
 ----------------------------------------------------------*/

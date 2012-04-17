@@ -1,19 +1,24 @@
 
-<%= link_to "History", run_logs_path %>
+<h2>Add New Run</h2>
 
-<% if flash[:notice] %>
+<% if flash[:notice]  %>
   <p class="notice">
-    Success
+    Your run was succesfully posted!
   </p>
 <% end %>
 
 <% if flash[:alert] %>
   <p class="alert">
-    Error! 
+    Oh No!!! An error occured while trying to save your run!
   </p>
 <% end %>
 
-<%= form_for @run_log do |f| %>
-  <%= f.text_field :time_ran %>
-  <%= f.submit "Save" %>
-<% end %>
+<p>
+  <span class="info">Please enter how many minutes you ran today:</span>
+  <br />
+  <%= form_for @run_log do |f| %>
+    <%= f.text_field :time_ran %>
+    <%= f.submit "Save" %>
+  <% end %>
+</p>
+
