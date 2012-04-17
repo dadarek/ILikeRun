@@ -3,7 +3,8 @@ require 'spec_helper'
 describe User do
 
   def params
-    { user_name: "elUser", password: "password", salt: "salt" }
+    salt = BCrypt::Engine.generate_salt
+    { user_name: "elUser", password: "password", salt: salt }
   end
 
   def params_without field
@@ -28,10 +29,18 @@ describe User do
   end
 
   it "requires unique usernames" do
-    user1 = User.create!( params )
-    user2 = User.create( params )
+    user1 = User.create!(params)
+    user2 = User.create(params)
     user1.should be_valid
     user2.should_not be_valid
+  end
+
+  it "encrypts password before saving" do
+    user = User.create(params)
+    encrypted = BCrypt::Engine.hash_secret user.password, user.salt
+    user.save!
+
+    user.password.should == encrypted
   end
 
 end
