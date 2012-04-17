@@ -9,6 +9,7 @@ Feature: User Access
     And I fill in "Fred" for "username"
     And I fill in "pickle" for "password"
     Then I should be logged in
+    And I should be on the "log new run" screen
 
   Scenario: Logging in with invalid credentials
     Given a user "Smith" with password "apple"
@@ -23,6 +24,12 @@ Feature: User Access
     When I fill in "600" minutes for "time ran"
     And I click the save button
     Then My history should have a log with 600 minutes
+
+  Scenario: Automatic Logout
+    Given I am logged in
+    When I do not use the site for 30 minutes
+    Then I should be automatically logged out
+    And I should be on the login screen
 
   Scenario: Logging out
     Given I am logged in
