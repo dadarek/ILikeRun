@@ -33,5 +33,11 @@ describe UsersController do
       make_post.should redirect_to(:root)
     end
 
+    it "does not create alert on valid credentials" do
+      User.create! params 
+      make_post
+      flash.now[:alert].should be_nil
+    end
+
   end
 end

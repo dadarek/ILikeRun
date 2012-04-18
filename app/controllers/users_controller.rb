@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     #log = RunLog.new(attributes)
 
     #if not log.valid? then
-      flash[:alert] = "Error!"
     #else
     #  log.save!
     #  flash[:notice] = "Success"
@@ -17,6 +16,7 @@ class UsersController < ApplicationController
     if User.authenticate(attributes[:user_name], attributes[:password]) then
       redirect_to :root
     else
+      flash[:alert] = "Invalid credentials!"
       redirect_to action: :login
     end
   end
