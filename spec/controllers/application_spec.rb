@@ -10,7 +10,10 @@ describe ApplicationController do
     filter_names.should include(:ensure_is_logged_in)
   end
 
-
-  pending "test authenticate"
+  it "redirects to login if not authenticated" do
+    c = ApplicationController.new
+    pending "The below does not work"
+    #c.ensure_is_logged_in.should redirect_to(:users_login)
+  end
 
 end
