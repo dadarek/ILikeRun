@@ -8,7 +8,12 @@ describe UsersController do
       assigns(:user).should be_an_instance_of(User)
     end
 
-    pending "it should redirect to run logs if already logged in"
+    it "redirects to run logs if already logged in" do
+      session[:user_id] = 15
+      (get :login).should redirect_to(:run_logs)
+    end
+
+    pending "redirect to home from run logs if not logged in"
   end
 
   describe "#authenticate" do
@@ -39,5 +44,12 @@ describe UsersController do
       flash.now[:alert].should be_nil
     end
 
+    it "sets session variable after valid login" do
+      user = User.create! params 
+      make_post
+      session[:user_id].should == user.id
+    end
+
+    pending "expires after 30 minutes"
   end
 end
