@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def login 
     if logged_in then
-      redirect_to :run_logs
+      redirect_to :new_run_log
     else
       @user = User.new
     end
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
     if user 
       session[:user_id] = user.id
-      redirect_to :root
+      redirect_to :new_run_log
     else
       flash[:alert] = "Invalid credentials!"
       redirect_to action: :login

@@ -16,9 +16,9 @@ describe UsersController do
       assigns(:user).should be_an_instance_of(User)
     end
 
-    it "redirects to run logs if already logged in" do
+    it "redirects to new -run-log if already logged in" do
       session[:user_id] = 15
-      (get :login).should redirect_to(:run_logs)
+      (get :login).should redirect_to(:new_run_log)
     end
 
     pending "redirect to home from run logs if not logged in"
@@ -41,9 +41,9 @@ describe UsersController do
       flash.now[:alert].should_not be_nil
     end
 
-    it "redirects to home page on valid credentials" do
+    it "redirects to add-run-log on valid credentials" do
       User.create! params 
-      make_post.should redirect_to(:root)
+      make_post.should redirect_to(:new_run_log)
     end
 
     it "does not create alert on valid credentials" do
