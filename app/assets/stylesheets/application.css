@@ -50,6 +50,11 @@ div.header {
   }
 }
 
+div.welcome-text {
+  text-align: right;
+  padding: 3px;
+}
+
 div.main {
   padding: 20px 0;
 
