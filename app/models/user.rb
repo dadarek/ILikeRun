@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :user_name, uniqueness: {case_sensitive: false}
 
   before_validation :generate_salt
-  before_save :encrypt_password
+  before_save :encrypt_password, :disallow_update
 
   def generate_salt
     self.salt = BCrypt::Engine.generate_salt
@@ -14,6 +14,12 @@ class User < ActiveRecord::Base
 
   def encrypt_password
     self.password = User.hash_secret(password, salt)
+  end
+
+  def disallow_update
+    if not id.nil?
+      throw :update_disallowed
+    end
   end
 
   def self.authenticate user_name, password

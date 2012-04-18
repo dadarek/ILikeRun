@@ -26,7 +26,8 @@ describe User do
   end
 
   it "does not allow updates" do
-    pending "Make sure do not override salt"
+    user = create_user
+    lambda{ user.save }.should throw_symbol( :update_disallowed )
   end
 
   it "requires unique usernames" do
