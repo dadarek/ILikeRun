@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  skip_before_filter :ensure_is_logged_in
+
   def login 
     if logged_in then
       redirect_to :run_logs

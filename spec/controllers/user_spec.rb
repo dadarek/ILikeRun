@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe UsersController do
 
+  it "does not have the ensure_is_logged_in before filter" do
+    all_filters = UsersController._process_action_callbacks
+    before_filters = all_filters.select{|f| f.kind == :before }
+    filter_names =before_filters.map(&:filter) 
+
+    filter_names.should_not include(:ensure_is_logged_in)
+  end
+
   describe "#login" do
     it "initializes an empty User" do
       get :login
