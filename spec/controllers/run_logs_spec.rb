@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe RunLogsController do
 
+  before :each do
+    session[:user_id] = 5
+  end
+
   describe "#new" do
     it "initializes @run_log to an dummy instance" do
       get :new
