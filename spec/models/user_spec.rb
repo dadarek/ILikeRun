@@ -3,8 +3,7 @@ require 'spec_helper'
 describe User do
 
   def params
-    salt = BCrypt::Engine.generate_salt
-    { user_name: "elUser", password: "password", salt: salt }
+    { user_name: "elUser", password: "password" }
   end
 
   def params_without field
@@ -23,9 +22,13 @@ describe User do
     user.should_not be_valid
   end
 
-  it "rejects empty salt" do
-    user = User.create( params_without :salt )
-    user.should_not be_valid
+  it "creates salt on save" do
+    user = User.create!( params_without :salt )
+    user.salt.should_not be_nil
+  end
+
+  it "does not allow updates" do
+    pending "Make sure do not override salt"
   end
 
   it "requires unique usernames" do
@@ -36,10 +39,8 @@ describe User do
   end
 
   it "encrypts password before saving" do
-    user = User.create(params)
-    encrypted = BCrypt::Engine.hash_secret user.password, user.salt
-    user.save!
-
+    user = User.create!(params)
+    encrypted = BCrypt::Engine.hash_secret params[:password], user.salt
     user.password.should == encrypted
   end
 
