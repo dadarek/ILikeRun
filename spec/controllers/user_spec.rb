@@ -10,8 +10,13 @@ describe UsersController do
   end
 
   describe "#authenticate" do
+    it "redirects to login on invalid credentials" do
+      (post :authenticate, user: {user_name: "b", password: "c"}).should redirect_to :users_login
+    end
+
     it "rejects invalid credentials" do
-      pending "Finish this after model."
+      post :authenticate, user: {user_name: "b", password: "c"}
+      flash.now[:alert].should_not be_nil
     end
   end
 end
