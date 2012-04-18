@@ -19,14 +19,6 @@ Feature: User Access
     Then I should not be logged in 
 
   @wip
-  Scenario: Posting runs as user
-    Given I am logged in
-    And I go to create a new run log
-    When I fill in "600" minutes for "time ran"
-    And I click the save button
-    Then My history should have a log with 600 minutes
-
-  @wip
   Scenario: Automatic Logout
     Given I am logged in
     When I do not use the site for 30 minutes
