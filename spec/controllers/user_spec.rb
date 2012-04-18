@@ -11,11 +11,6 @@ describe UsersController do
   end
 
   describe "#login" do
-    it "initializes an empty User" do
-      get :login
-      assigns(:user).should be_an_instance_of(User)
-    end
-
     it "redirects to new -run-log if already logged in" do
       session[:user_id] = 15
       (get :login).should redirect_to(:new_run_log)

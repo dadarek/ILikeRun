@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   def login 
     if logged_in then
       redirect_to :new_run_log
-    else
-      @user = User.new
     end
   end
 
