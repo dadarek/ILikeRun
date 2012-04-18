@@ -10,14 +10,8 @@ class UsersController < ApplicationController
 
   def authenticate
     attributes = params[:user]
-    #log = RunLog.new(attributes)
-
-    #if not log.valid? then
-    #else
-    #  log.save!
-    #  flash[:notice] = "Success"
-    #end
     user = User.authenticate(attributes[:user_name], attributes[:password])
+
     if user 
       session[:user_id] = user.id
       redirect_to :root
