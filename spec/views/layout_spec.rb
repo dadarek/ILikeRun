@@ -14,6 +14,10 @@ describe "layouts/application" do
     have_selector ".notice" 
   end
 
+  def have_alert
+    have_selector ".alert" 
+  end
+
 
   it "does not render welcome text if user not present" do
     render
@@ -48,6 +52,18 @@ describe "layouts/application" do
     rendered.should_not have_notice
   end
 
+  it "renders alert if flash[:alert] present" do
+    flash[:alert] = "Some alert"
+    render
+    rendered.should have_alert
+  end
+
+  it "renders alert if flash[:alert] is missing" do
+    render
+    rendered.should_not have_alert
+  end
+
+  pending "Should we check content of .alert and .notice?"
   pending "How do you print out 'Welcome, username?"
 
 end
