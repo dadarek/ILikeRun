@@ -1,11 +1,5 @@
 <h2>Please Login</h2>
 
-<% if flash[:alert]  %>
-  <p class="alert">
-    <%= flash[:alert] %>
-  </p>
-<% end %>
-
 <%= form_for(User.new, url: authenticate_path) do |f| %>
   <p><%= f.text_field :user_name, placeholder: "user name" %></p>
   <p><%= f.text_field :password, placeholder: "password" %></p>
