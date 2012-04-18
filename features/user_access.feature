@@ -11,7 +11,6 @@ Feature: User Access
     Then I should be logged in
     And I should be on the "log new run" screen
 
-  @wip
   Scenario: Logging in with invalid credentials
     Given a user "Smith" with password "apple"
     When I visit the login screen
