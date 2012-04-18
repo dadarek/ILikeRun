@@ -43,4 +43,14 @@ describe User do
     user.password.should == encrypted
   end
 
+  it "returns a valid user on succesful authentication" do
+    user = User.create!(params)
+    User.authenticate( params[:user_name], params[:password] ).should == user
+  end
+
+  it "returns nil on failed authentication" do
+    user = User.create!(params)
+    User.authenticate( params[:user_name], "bad-password" ).should be_nil
+  end
+
 end
