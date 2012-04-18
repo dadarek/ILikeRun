@@ -19,6 +19,13 @@ describe UsersController do
     pending "redirect to home from run logs if not logged in"
   end
 
+  describe "#logout" do
+    it "redirects to home page" do
+      session[:user_id] = 20
+      (get :logout).should redirect_to(:root)
+    end
+  end
+
   describe "#authenticate" do
     def params
       {user_name: "b", password: "c"}

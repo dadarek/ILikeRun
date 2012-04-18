@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    redirect_to :root
+  end
+
   def authenticate
     attributes = params[:user]
     user = User.authenticate(attributes[:user_name], attributes[:password])
