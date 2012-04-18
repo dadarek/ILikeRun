@@ -1,1 +1,7 @@
 <h2>Please Login</h2>
+
+<%= form_for(@user, url: authenticate_path) do |f| %>
+  <p><%= f.text_field :user_name, placeholder: "user name" %></p>
+  <p><%= f.text_field :password, placeholder: "password" %></p>
+  <p><%= f.submit "Login" %></p>
+<% end %>

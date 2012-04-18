@@ -1,3 +1,4 @@
+@wip
 Feature: List past runs
   In order see if I am getting better
   As an obsessive runner
