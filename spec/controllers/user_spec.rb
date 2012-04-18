@@ -21,8 +21,13 @@ describe UsersController do
 
   describe "#logout" do
     it "redirects to home page" do
-      session[:user_id] = 20
       (get :logout).should redirect_to(:root)
+    end
+
+    it "resets session user_id" do
+      session[:user_id] = 20
+      get :logout
+      session[:user_id].should be_nil
     end
   end
 
