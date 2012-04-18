@@ -42,9 +42,10 @@ describe "layouts/application" do
   end
 
   it "renders notice if flash[:notice] present" do
-    flash[:notice] = "Some notice"
+    flash[:notice] = "el notice"
     render
     rendered.should have_notice
+    rendered.should =~ /el notice/
   end
 
   it "does not render notice if flash[:notice] is missing" do
@@ -56,6 +57,7 @@ describe "layouts/application" do
     flash[:alert] = "Some alert"
     render
     rendered.should have_alert
+    rendered.should =~ /Some alert/
   end
 
   it "renders alert if flash[:alert] is missing" do

@@ -27,13 +27,13 @@
 
     <% if flash[:notice] %>
       <div class="notice">
-        Some notice
+        <%= flash[:notice] %>
       </div>
     <% end %>
 
     <% if flash[:alert] %>
       <div class="alert">
-        eat at joes
+        <%= flash[:alert] %>
       </div>
     <% end %>
 
