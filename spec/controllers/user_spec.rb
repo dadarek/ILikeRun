@@ -12,19 +12,25 @@ describe UsersController do
   end
 
   describe "#authenticate" do
-    it "redirects to login on invalid credentials" do
-      (post :authenticate, user: {user_name: "b", password: "c"}).should redirect_to :users_login
+    def params
+      {user_name: "b", password: "c"}
+    end
+    def make_post
+      post :authenticate, user: params 
     end
 
-    it "posts message on credentials" do
-      post :authenticate, user: {user_name: "b", password: "c"}
+    it "redirects to login on invalid credentials" do
+      make_post.should redirect_to :users_login
+    end
+
+    it "creates alert on credentials" do
+      make_post
       flash.now[:alert].should_not be_nil
     end
 
     it "redirects to home page on valid credentials" do
-      params = {user_name: "b", password: "c"}
       User.create! params 
-      (post :authenticate, user: params).should redirect_to(:root)
+      make_post.should redirect_to(:root)
     end
 
   end
