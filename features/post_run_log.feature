@@ -1,4 +1,3 @@
-@wip
 Feature: Posting a new run log
   In order to track them in the future
   As an obsessed runner
