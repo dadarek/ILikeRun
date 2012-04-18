@@ -25,6 +25,12 @@
       </div>
     <% end %>
 
+    <% if flash[:notice] %>
+      <div class="notice">
+        Some notice
+      </div>
+    <% end %>
+
     <div class="main">
       <%= yield %>
     </div>

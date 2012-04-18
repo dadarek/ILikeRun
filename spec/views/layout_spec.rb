@@ -32,6 +32,17 @@ describe "layouts/application" do
     rendered.should_not have_selector logout_selector
   end
 
+  it "renders notice if flash[:notice] present" do
+    flash[:notice] = "Some notice"
+    render
+    rendered.should have_selector ".notice" 
+  end
+
+  it "does not render notice if flash[:notice] is missing" do
+    render
+    rendered.should_not have_selector ".notice" 
+  end
+
   pending "How do you print out 'Welcome, username?"
 
 end
