@@ -47,6 +47,12 @@ describe User do
     user = create_user
     User.authenticate( params[:user_name], params[:password] ).should == user
   end
+  
+  it "ignores case on user_name" do
+    user = create_user
+    User.authenticate( params[:user_name].upcase, params[:password] ).should == user
+    User.authenticate( params[:user_name].downcase, params[:password] ).should == user
+  end
 
   it "returns nil on bad password" do
     user = create_user
