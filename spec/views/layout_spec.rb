@@ -32,4 +32,6 @@ describe "layouts/application" do
     rendered.should_not have_selector logout_selector
   end
 
+  pending "How do you print out 'Welcome, username?"
+
 end
