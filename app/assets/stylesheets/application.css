@@ -22,6 +22,10 @@ body
     font-family: verdana, arial, helvetica;
 }
 
+input[type=text] {
+  text-align: center;
+}
+
 div.container {
   margin: 5px auto;
   padding: 10px;
