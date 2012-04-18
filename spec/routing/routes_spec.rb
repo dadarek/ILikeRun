@@ -19,6 +19,10 @@ describe "route tests" do
     {post: "/users/login"}.should route_to "users#authenticate"
   end
 
+  it "user allows get to logout" do
+    {get: "/users/logout"}.should route_to "users#logout"
+  end
+
   it "routes root to login page" do
     { get: "/" }.should route_to("users#login")
   end
