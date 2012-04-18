@@ -9,10 +9,10 @@ class RunLogsController < ApplicationController
     log = RunLog.new(attributes)
 
     if not log.valid? then
-      flash[:alert] = "Error!"
+      flash[:alert] = "Oh No!!! An error occured while trying to save your run!"
     else
       log.save!
-      flash[:notice] = "Success"
+      flash[:notice] = "Your run was succesfully posted!"
     end
 
     redirect_to action: :new
