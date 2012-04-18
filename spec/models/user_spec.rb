@@ -48,9 +48,13 @@ describe User do
     User.authenticate( params[:user_name], params[:password] ).should == user
   end
 
-  it "returns nil on failed authentication" do
+  it "returns nil on bad password" do
     user = User.create!(params)
     User.authenticate( params[:user_name], "bad-password" ).should be_nil
+  end
+
+  it "returns nil on bad username" do
+    User.authenticate( "john", "deere" ).should be_nil
   end
 
 end

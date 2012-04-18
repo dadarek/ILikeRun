@@ -13,10 +13,10 @@ class User < ActiveRecord::Base
 
   def self.authenticate user_name, password
     user = find_by_user_name user_name
-    #if not user.nil?
+    if not user.nil?
       hashed_password = hash_secret(password, user.salt)
       user if hashed_password == user.password
-    #end
+    end
   end
 
   private
