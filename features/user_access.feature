@@ -23,14 +23,13 @@ Feature: User Access
     Given I am logged in
     When I do not use the site for 30 minutes
     Then I should be automatically logged out
-    And I should be on the login screen
+    And I should be on the "home page" screen
 
-  @wip
   Scenario: Logging out
     Given I am logged in
-    When I click on log out
+    When I click on "Logout"
     Then I should not be logged in
-    And I should be on the login screen
+    And I should be on the "home page" screen
 
     # TODO 
     # Question for Eric:
