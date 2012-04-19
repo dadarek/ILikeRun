@@ -5,6 +5,7 @@ describe ApplicationController do
   before :each do
     @controller = ApplicationController.new
     @controller.stub(:session).and_return(session)
+
     @user = User.create!( user_name: "bob", password: "barker" )
   end
 
@@ -21,24 +22,18 @@ describe ApplicationController do
     response.should redirect_to :users_login
   end
 
-  it "does not redirect to login if authenticated" do
-    session[:user_id] = @user.id
-    @controller.ensure_is_logged_in.should be_nil
-  end
-
-  it "returns no user if session[:user_id] is nil" do
-    @controller.current_user.should be_nil
-  end
-
-  it "returns user associated with session[:user_id]" do
-    session[:user_id] = @user.id
-
-    @controller.current_user.should == @user
-  end
-
   it "logs in user" do
     @controller.login @user
     @controller.current_user.should == @user
+  end
+
+  it "does not redirect to login if logged in" do
+    @controller.login @user
+    @controller.ensure_is_logged_in.should be_nil
+  end
+
+  it "returns no user if user does not login" do
+    @controller.current_user.should be_nil
   end
 
 end
