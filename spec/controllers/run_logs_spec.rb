@@ -35,7 +35,8 @@ describe RunLogsController do
     context "an INVALID post" do
       it "stores an error in flash" do
         post :create, run_log: {time_ran: -1}
-        flash.now[:alert].should_not be_nil
+        bad_log = RunLog.create(time_ran: -1)
+        flash.now[:alert].should == bad_log.errors.full_messages[0]
       end
     end
   end

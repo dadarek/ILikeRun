@@ -1,9 +1,12 @@
 class RunLogsController < ApplicationController
 
   def new
+    @run_log = RunLog.new
   end
 
   def create
+    @run_log = RunLog.new
+
     attributes = params[:run_log]
     attributes[:user_id] = current_user.id
     log = RunLog.new(attributes)
@@ -11,7 +14,7 @@ class RunLogsController < ApplicationController
     if log.save then
       flash[:notice] = "Your run was succesfully posted!"
     else
-      flash[:alert] = "Oh No!!! An error occured while trying to save your run!"
+      flash[:alert] = log.errors.full_messages[0]
     end
 
     redirect_to action: :new
