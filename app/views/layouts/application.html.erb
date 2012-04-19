@@ -16,12 +16,6 @@
 
     <%= render 'layouts/messages' %>
 
-    <% if session[:user_id] %>
-      <div class="welcome-text">
-        Welcome, Eric Smith!
-      </div>
-    <% end %>
-
     <div class="main">
       <%= yield %>
     </div>

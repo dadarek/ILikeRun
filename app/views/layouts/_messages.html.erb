@@ -1,4 +1,10 @@
 
+<% if session[:user_id] %>
+  <div class="welcome-text">
+    Welcome, Eric Smith!
+  </div>
+<% end %>
+
 <% if flash[:notice] %>
   <div class="notice">
     <%= flash[:notice] %>

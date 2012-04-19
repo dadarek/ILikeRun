@@ -10,6 +10,10 @@ describe "layouts/_messages" do
     have_selector ".alert" 
   end
 
+  def have_welcome
+    have_selector ".welcome-text"
+  end
+
   it "compiles" do
     flash[:notice] = "el notice"
     render
@@ -38,6 +42,17 @@ describe "layouts/_messages" do
   it "renders alert if flash[:alert] is missing" do
     render
     rendered.should_not have_alert
+  end
+
+  it "does not render welcome text if user not present" do
+    render
+    rendered.should_not have_welcome
+  end
+  
+  it "renders welcome text if user present" do
+    session[:user_id] = 5
+    render
+    rendered.should have_welcome
   end
 
 end
