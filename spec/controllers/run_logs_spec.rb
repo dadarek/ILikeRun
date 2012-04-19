@@ -49,7 +49,7 @@ describe RunLogsController do
 
     it "initializes @run_logs to all instances of run_logs in the database." do
       get :index
-      assigns(:run_logs).should =~ RunLog.all
+      assigns(:run_logs).should =~ @user.run_logs
     end
 
     it "sorts the run logs in reverse-chronological order" do
@@ -58,6 +58,15 @@ describe RunLogsController do
       logs[0].should == @today 
       logs[1].should == @yesterday
       logs[2].should == @three_days_ago 
+    end
+
+    it "only returns logged-in users logs" do
+      other_user = User.create!( user_name: "John Smith", password: "apple" )
+      log = RunLog.create!(time_ran: 55, user_id: other_user.id)
+
+      get :index
+      logs = assigns(:run_logs)
+      logs.should_not include(log)
     end
 
     def new_log(time_ran, day)

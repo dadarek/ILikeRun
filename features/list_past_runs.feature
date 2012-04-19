@@ -3,7 +3,6 @@ Feature: List past runs
   As an obsessive runner
   I want to be able to view my run history
 
-  @wip
   Scenario: Viewing only my runs
     Given I am logged in
     And I have entered some runs in the past

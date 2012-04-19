@@ -19,7 +19,8 @@ class RunLogsController < ApplicationController
   end
 
   def index
-    @run_logs = RunLog.all(order: "created_at desc")
+    user_logs = current_user.run_logs
+    @run_logs = user_logs.sort{ |a, b| b.created_at <=> a.created_at }
   end
 
 end
