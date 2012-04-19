@@ -8,3 +8,4 @@
 #
 
 User.create!( user_name: "Eric", password: "kablamo" )
+User.create!( user_name: "Darek", password: "zeGarek" )
