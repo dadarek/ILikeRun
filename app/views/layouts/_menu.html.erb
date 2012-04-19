@@ -1,0 +1,6 @@
+
+<%= link_to "History", :run_logs, class: 'button' %>
+<a href="#" class="button">Schedule</a>
+<% if session[:user_id] %>
+  <%= link_to "Logout", :logout, class: 'button' %>
+<% end %>
