@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :ensure_is_logged_in
 
   def ensure_is_logged_in
-    redirect_to :users_login if session[:user_id].nil?
+    redirect_to :users_login if not current_user 
   end
 
   def current_user
