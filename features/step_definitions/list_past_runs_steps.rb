@@ -15,9 +15,9 @@ Then /I go to the history page/ do
 end
 
 When /I have entered some runs in the past/ do
-  RunLog.create!( time_ran: 20 )
-  RunLog.create!( time_ran: 40 )
-  RunLog.create!( time_ran: 30 )
+  RunLog.create!(time_ran: 20, user_id: @user.id)
+  RunLog.create!(time_ran: 40, user_id: @user.id)
+  RunLog.create!(time_ran: 30, user_id: @user.id)
 end
 
 Then /I should see my runs$/ do
