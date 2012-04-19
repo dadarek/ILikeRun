@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
     redirect_to :users_login if session[:user_id].nil?
   end
 
+  def current_user
+    User.find_by_id session[:user_id]
+  end
+
 end
