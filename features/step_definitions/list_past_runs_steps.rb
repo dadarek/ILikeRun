@@ -20,6 +20,12 @@ When /I have entered some runs in the past/ do
   RunLog.create!( time_ran: 30 )
 end
 
-Then /I should see those runs ordered by most-recent first/ do
+Then /I should see my runs$/ do
+  page.body.should =~ /20/
+  page.body.should =~ /30/
+  page.body.should =~ /40/
+end
+
+Then /I should see my runs ordered by most-recent first/ do
   page.body.should =~ /30.*?40.*?20/m
 end
