@@ -2,29 +2,26 @@ require 'spec_helper'
 
 describe "layouts/_messages" do
 
+  before :each do
+    view.controller.stub(:current_user).and_return(nil)
+  end
+
   def have_notice
-    have_selector ".notice" 
+    have_selector ".notice", text: flash[:notice]
   end
 
   def have_alert
-    have_selector ".alert" 
+    have_selector ".alert", text: flash[:alert]
   end
 
-  def have_welcome
-    have_selector ".welcome-text"
-  end
-
-  it "compiles" do
-    flash[:notice] = "el notice"
-    render
-    rendered.should =~ /el notice/
+  def have_welcome name = nil
+    have_selector ".welcome-text", text: name
   end
 
   it "renders notice if flash[:notice] present" do
     flash[:notice] = "el notice"
     render
     rendered.should have_notice
-    rendered.should =~ /el notice/
   end
 
   it "does not render notice if flash[:notice] is missing" do
@@ -36,7 +33,6 @@ describe "layouts/_messages" do
     flash[:alert] = "Some alert"
     render
     rendered.should have_alert
-    rendered.should =~ /Some alert/
   end
 
   it "renders alert if flash[:alert] is missing" do
@@ -50,9 +46,10 @@ describe "layouts/_messages" do
   end
   
   it "renders welcome text if user present" do
-    session[:user_id] = 5
+    user = User.create!( user_name: "mario", password: "luigi" )
+    view.controller.stub(:current_user).and_return(user)
     render
-    rendered.should have_welcome
+    rendered.should have_welcome("mario")
   end
 
 end

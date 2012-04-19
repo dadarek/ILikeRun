@@ -1,7 +1,7 @@
 
-<% if session[:user_id] %>
+<% if controller.current_user %>
   <div class="welcome-text">
-    Welcome, Eric Smith!
+    Welcome, <%=controller.current_user.user_name%>!
   </div>
 <% end %>
 
