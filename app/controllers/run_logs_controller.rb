@@ -1,11 +1,11 @@
 class RunLogsController < ApplicationController
 
   def new
-    @run_log = RunLog.new
   end
 
   def create
     attributes = params[:run_log]
+    attributes[:user_id] = current_user.id
     log = RunLog.new(attributes)
 
     if not log.valid? then

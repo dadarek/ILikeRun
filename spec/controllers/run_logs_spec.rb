@@ -3,14 +3,8 @@ require 'spec_helper'
 describe RunLogsController do
 
   before :each do
-    session[:user_id] = 5
-  end
-
-  describe "#new" do
-    it "initializes @run_log to an dummy instance" do
-      get :new
-      assigns(:run_log).should_not be_nil
-    end
+    @user = User.create!( user_name: "John", password: "Smith" )
+    session[:user_id] = @user.id 
   end
 
   describe "#create" do
@@ -30,6 +24,10 @@ describe RunLogsController do
 
       it "stores success message in flash" do
         flash.now[:notice].should_not be_nil
+      end
+
+      it "associates run logs with new users" do
+        @user.run_logs.count.should == 1
       end
 
     end
@@ -63,7 +61,7 @@ describe RunLogsController do
     end
 
     def new_log(time_ran, day)
-      result = RunLog.create!(time_ran: 20)
+      result = RunLog.create!(time_ran: 20, user_id: @user.id)
       result.created_at = day
       result.save
       result

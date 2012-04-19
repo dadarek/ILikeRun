@@ -26,7 +26,7 @@ describe RunLog do
   end
 
   it "Creates run log with today's date" do
-    run_log = RunLog.create!( time_ran: 22 )
+    run_log = RunLog.create!( time_ran: 22, user_id: 5)
     run_log.created_at.to_date.should == Date.today
   end
 

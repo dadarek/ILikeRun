@@ -4,7 +4,7 @@
 <p>
   <span class="info">Please enter how many minutes you ran today:</span>
   <br />
-  <%= form_for @run_log do |f| %>
+  <%= form_for RunLog.new do |f| %>
     <%= f.text_field :time_ran %>
     <%= f.submit "Save" %>
   <% end %>
