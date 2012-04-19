@@ -16,9 +16,8 @@ describe ApplicationController do
   end
 
   it "redirects to login if not authenticated" do
-    c = ApplicationController.new
-    pending "The below does not work"
-    #c.ensure_is_logged_in.should redirect_to(:users_login)
+    pending "The below does not work..."
+    #@controller.ensure_is_logged_in.should redirect_to(:users_login)
   end
 
   it "returns no user if session[:user_id] is nil" do
