@@ -4,7 +4,7 @@ describe RunLogsController do
 
   before :each do
     @user = User.create!( user_name: "John", password: "Smith" )
-    session[:user_id] = @user.id 
+    controller.login @user
   end
 
   describe "#create" do
