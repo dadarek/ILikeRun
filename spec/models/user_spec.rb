@@ -63,4 +63,10 @@ describe User do
     User.authenticate( "john", "deere" ).should be_nil
   end
 
+  it "has run logs" do
+    user = create_user
+    run_log = RunLog.create!(time_ran: 20, user_id: user.id)
+    user.run_logs.first.should == run_log
+  end
+
 end
