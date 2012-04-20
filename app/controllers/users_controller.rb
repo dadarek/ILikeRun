@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   private
 
   def logged_in
-    not session[:user_id].nil? 
+    not current_user.nil? 
   end
 
 end
