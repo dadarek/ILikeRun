@@ -4,7 +4,7 @@ describe RunLogsController do
 
   before :each do
     @user = User.create!( user_name: "John", password: "Smith" )
-    controller.login @user
+    @controller.stub(:current_user).and_return(@user)
   end
 
   describe "#create" do

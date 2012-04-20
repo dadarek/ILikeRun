@@ -3,9 +3,7 @@ class UsersController < ApplicationController
   skip_before_filter :ensure_is_logged_in
 
   def login 
-    if is_logged_in then
-      redirect_to :new_run_log
-    end
+    redirect_to :new_run_log if current_user
   end
 
   def logout
@@ -24,12 +22,6 @@ class UsersController < ApplicationController
       flash[:alert] = "Invalid credentials!"
       redirect_to action: :login
     end
-  end
-
-  private
-
-  def is_logged_in
-    not current_user.nil? 
   end
 
 end
