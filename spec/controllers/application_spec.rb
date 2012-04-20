@@ -11,9 +11,6 @@ module ApplicationControllerTests
   describe TestController do
 
     before :each do
-      @controller = TestController.new
-      @controller.stub(:session).and_return(session)
-
       @user = User.create!( user_name: "bob", password: "barker" )
     end
 
@@ -22,8 +19,8 @@ module ApplicationControllerTests
     end
 
     it "does not redirect to login if logged in" do
-      @controller.login @user
-      (get :index).should_not redirect_to :users_login
+      @controller.stub(:current_user).and_return(@user)
+      (get :index).should_not be_redirect
     end
 
     it "logs in user" do
