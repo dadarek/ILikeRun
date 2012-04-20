@@ -14,8 +14,12 @@ describe "layouts/_menu" do
     have_selector "a[href='#']"
   end
 
+  def stub_current_user user
+    @controller.stub(:current_user).and_return(user)
+  end
+
   it "renders menu links if user present" do
-    session[:user_id] = 5
+    stub_current_user true
     render
     rendered.should have_logout
     rendered.should have_history
@@ -23,6 +27,7 @@ describe "layouts/_menu" do
   end
 
   it "does not render menu links if user not present" do
+    stub_current_user false
     render
     rendered.should_not have_logout
     rendered.should_not have_history

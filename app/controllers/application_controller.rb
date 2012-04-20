@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  attr_accessor :el_user
-
   before_filter :ensure_is_logged_in
 
   def ensure_is_logged_in
