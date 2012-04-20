@@ -3,13 +3,13 @@ class UsersController < ApplicationController
   skip_before_filter :ensure_is_logged_in
 
   def login 
-    if logged_in then
+    if is_logged_in then
       redirect_to :new_run_log
     end
   end
 
   def logout
-    session[:user_id] = nil
+    logged_out
     redirect_to :root
   end
 
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     user = User.authenticate(attributes[:user_name], attributes[:password])
 
     if user 
-      session[:user_id] = user.id
+      logged_in user
       redirect_to :new_run_log
     else
       flash[:alert] = "Invalid credentials!"
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   private
 
-  def logged_in
+  def is_logged_in
     not current_user.nil? 
   end
 

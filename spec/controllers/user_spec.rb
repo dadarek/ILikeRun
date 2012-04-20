@@ -25,10 +25,10 @@ describe UsersController do
       (get :logout).should redirect_to(:root)
     end
 
-    it "resets session user_id" do
+    it "delegates to ApplicationController.logged_out" do
+      @controller.should_receive(:logged_out)
       login
       get :logout
-      session[:user_id].should be_nil
     end
   end
 
@@ -60,10 +60,10 @@ describe UsersController do
       flash.now[:alert].should be_nil
     end
 
-    it "sets session variable after valid login" do
+    it "delegates to ApplicationController.logged_in" do
       user = User.create! params 
+      @controller.should_receive(:logged_in).with(user)
       make_post
-      session[:user_id].should == user.id
     end
 
     pending "expires after 30 minutes"
