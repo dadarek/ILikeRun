@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  attr_accessor :el_user
+
   before_filter :ensure_is_logged_in
 
   def ensure_is_logged_in
@@ -11,11 +13,11 @@ class ApplicationController < ActionController::Base
     User.find_by_id session[:user_id]
   end
 
-  def login user
+  def logged_in user
     session[:user_id] = user.id
   end
 
-  def logout
+  def logged_out
     session[:user_id] = nil
   end
 

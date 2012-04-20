@@ -24,7 +24,7 @@ module ApplicationControllerTests
     end
 
     it "logs in user" do
-      @controller.login @user
+      @controller.logged_in @user
       @controller.current_user.should == @user
     end
 
@@ -33,8 +33,8 @@ module ApplicationControllerTests
     end
 
     it "logs user out" do
-      @controller.login @user
-      @controller.logout
+      @controller.logged_in @user
+      @controller.logged_out
       @controller.current_user.should be_nil
     end
 
