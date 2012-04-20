@@ -32,6 +32,12 @@ module ApplicationControllerTests
       @controller.current_user.should be_nil
     end
 
+    it "logs user out" do
+      @controller.login @user
+      @controller.logout
+      @controller.current_user.should be_nil
+    end
+
   end
 
 end
