@@ -1,39 +1,40 @@
 require 'spec_helper'
 
-describe ApplicationController do
+module ApplicationControllerTests
 
-  before :each do
-    @controller = ApplicationController.new
-    @controller.stub(:session).and_return(session)
-
-    @user = User.create!( user_name: "bob", password: "barker" )
+  class TestController < ApplicationController
+    def index
+      render nothing: true
+    end
   end
 
-  it "has an authenticate before filter" do
-    all_filters = ApplicationController._process_action_callbacks
-    before_filters = all_filters.select{|f| f.kind == :before }
-    filter_names =before_filters.map(&:filter) 
+  describe TestController do
 
-    filter_names.should include(:ensure_is_logged_in)
-  end
+    before :each do
+      @controller = TestController.new
+      @controller.stub(:session).and_return(session)
 
-  it "redirects to login if not authenticated" do
-    get :ensure_is_logged_in
-    response.should redirect_to :users_login
-  end
+      @user = User.create!( user_name: "bob", password: "barker" )
+    end
 
-  it "logs in user" do
-    @controller.login @user
-    @controller.current_user.should == @user
-  end
+    it "redirects to login if not authenticated" do
+      (get :index).should redirect_to :users_login
+    end
 
-  it "does not redirect to login if logged in" do
-    @controller.login @user
-    @controller.ensure_is_logged_in.should be_nil
-  end
+    it "does not redirect to login if logged in" do
+      @controller.login @user
+      (get :index).should_not redirect_to :users_login
+    end
 
-  it "returns no user if user does not login" do
-    @controller.current_user.should be_nil
+    it "logs in user" do
+      @controller.login @user
+      @controller.current_user.should == @user
+    end
+
+    it "returns no user if user does not login" do
+      @controller.current_user.should be_nil
+    end
+
   end
 
 end
