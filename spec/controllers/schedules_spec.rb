@@ -34,6 +34,23 @@ describe SchedulesController do
       get :index
       assigns(:schedule).should be_instance_of(Schedule)
     end
+
+    pending "all users should have a schedule"
+  end
+
+  describe "#delete" do
+    
+    it "sets yes-running days to not-running days" do
+      user = create_user
+      login user
+      schedule = Schedule.create!(user_id: user.id)
+      schedule.monday = true
+
+      delete :destroy, day_of_week: "Monday"
+      schedule.reload
+      schedule.monday.should == false
+    end
+
   end
 
 end
