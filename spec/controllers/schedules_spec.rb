@@ -50,7 +50,10 @@ describe SchedulesController do
       schedule.saturday.should == false
     end
 
-    pending "check for redirect"
+    it "redirects to schedule page" do
+      schedule = Schedule.create!(user_id: @user.id)
+      delete(:destroy, day_of_week: "Monday").should redirect_to :schedules
+    end
   end
 
   describe "#create" do
@@ -62,6 +65,10 @@ describe SchedulesController do
       schedule.tuesday.should == true
       schedule.wednesday.should == true
     end
-    pending "check for redirect"
+
+    it "redirects to schedule page" do
+      schedule = Schedule.create!(user_id: @user.id)
+      post(:create, day_of_week: "Monday").should redirect_to :schedules
+    end
   end
 end

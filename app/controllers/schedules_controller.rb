@@ -9,12 +9,12 @@ class SchedulesController < ApplicationController
 
   def destroy
     set_day_of_week false
-    render nothing: true
+    redirect_to :schedules
   end
 
   def create
     set_day_of_week true
-    render nothing: true
+    redirect_to :schedules
   end
 
   private 
