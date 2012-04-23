@@ -2,6 +2,7 @@
 class User < ActiveRecord::Base
   attr_accessible :user_name, :password
   has_many :run_logs
+  has_one :schedule
 
   validates :user_name, :password, :salt, presence: true
   validates :user_name, uniqueness: {case_sensitive: false}

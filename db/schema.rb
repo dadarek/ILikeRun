@@ -11,13 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120419180325) do
+ActiveRecord::Schema.define(:version => 20120423160453) do
 
   create_table "run_logs", :force => true do |t|
     t.integer  "time_ran"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id",    :null => false
+  end
+
+  create_table "schedules", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -1,15 +1,16 @@
-@wip
 Feature: Running Schedule
   In order to remind myself of when I should run
   As an obsessed runner
   I would like to manage a running schedule
 
+  @wip
   Scenario: Viewing Current Schedule
     Given I am logged in
     And My schedule has Tuesday, Wednesday, and Saturday
     When I click on "Schedule"
     Then I should see Tuesday, Wednesday, and Saturday
 
+  @wip
   Scenario: Removing Days from Schedule
     Given I am logged in
     And My schedule has Tuesday, Wednesday, and Saturday
@@ -18,6 +19,7 @@ Feature: Running Schedule
     And I click on "Save"
     Then My schedule should have Wednesday and Saturday
 
+  @wip
   Scenario: Adding Days to Schedule
     Given I am logged in
     And My schedule has Tuesday and Saturday
