@@ -3,8 +3,8 @@ require 'spec_helper'
 describe RunLogsController do
 
   before :each do
-    @user = User.create!( user_name: "John", password: "Smith" )
-    @controller.stub(:current_user).and_return(@user)
+    create_user
+    login
   end
 
   describe "#create" do

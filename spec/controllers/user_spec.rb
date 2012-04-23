@@ -2,17 +2,13 @@ require 'spec_helper'
 
 describe UsersController do
 
-  def login
-    user = User.create!( user_name: "bob", password: "barker" )
-    @controller.stub(:current_user).and_return(user)
-  end
-
   it "allows unauthenticated users" do
     (get :login).should_not be_redirect
   end
 
   describe "#login" do
     it "redirects to new -run-log if already logged in" do
+      create_user
       login
       (get :login).should redirect_to(:new_run_log)
     end
@@ -27,6 +23,7 @@ describe UsersController do
 
     it "delegates to ApplicationController.logged_out" do
       @controller.should_receive(:logged_out)
+      create_user
       login
       get :logout
     end
