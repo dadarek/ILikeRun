@@ -11,7 +11,7 @@ describe "layouts/_menu" do
   end
 
   def have_schedule
-    have_selector "a[href='#']"
+    have_selector "a[href='#{schedules_path}']"
   end
 
   it "renders menu links if user present" do

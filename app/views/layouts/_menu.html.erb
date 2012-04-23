@@ -1,5 +1,5 @@
 <% if current_user %>
-  <a href="#" class="button">Schedule</a>
+  <%= link_to "Schedule", :schedules, class: 'button' %>
   <%= link_to "History", :run_logs, class: 'button' %>
   <%= link_to "Logout", :logout, class: 'button' %>
 <% end %>

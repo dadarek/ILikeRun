@@ -2,29 +2,32 @@ require 'spec_helper'
 
 describe SchedulesController do
 
-  def create_schedule user
-    Schedule.create!( user_id: user.id )
-  end
+  describe "#index" do
 
-  it "returns users schedule" do
-    user = create_user
-    create_schedule user
+    def create_schedule user
+      Schedule.create!( user_id: user.id )
+    end
 
-    login user
-    get :index
-    assigns(:schedule).should == user.schedule
-  end
+    it "returns users schedule" do
+      user = create_user
+      create_schedule user
 
-  it "does not return others schedule" do
-    u1 = create_user("a", "p")
-    u2 = create_user("b", "q")
+      login user
+      get :index
+      assigns(:schedule).should == user.schedule
+    end
 
-    create_schedule u1
-    create_schedule u2
+    it "does not return others schedule" do
+      u1 = create_user("a", "p")
+      u2 = create_user("b", "q")
 
-    login u2
-    get :index
-    assigns(:schedule).should == u2.schedule
+      create_schedule u1
+      create_schedule u2
+
+      login u2
+      get :index
+      assigns(:schedule).should == u2.schedule
+    end
   end
 
 end
