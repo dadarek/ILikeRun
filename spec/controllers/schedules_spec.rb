@@ -38,7 +38,6 @@ describe SchedulesController do
   end
 
   describe "#delete" do
-    
     it "sets yes-running days to not-running days" do
       schedule = Schedule.create!(user_id: @user.id)
       schedule.monday = true
@@ -46,8 +45,19 @@ describe SchedulesController do
       delete :destroy, day_of_week: "Monday"
       schedule.reload
       schedule.monday.should == false
+      pending "add one more day here"
     end
 
+    pending "check for redirect"
   end
 
+  describe "#create" do
+    it "sets not-running days to yes-running days" do
+      schedule = Schedule.create!(user_id: @user.id)
+      post :create, day_of_week: "Tuesday"
+      schedule.reload
+      schedule.tuesday.should == true
+    end
+    pending "check for redirect"
+  end
 end

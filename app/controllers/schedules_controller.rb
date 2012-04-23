@@ -8,10 +8,16 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
-    if not current_user.schedule.nil?
-      current_user.schedule.monday = false
-      current_user.schedule.save!
-    end
+    current_user.schedule.monday = false
+    current_user.schedule.save!
+
+    render nothing: true
+  end
+
+  def create
+    current_user.schedule.tuesday = true
+    current_user.schedule.save!
+
     render nothing: true
   end
 
