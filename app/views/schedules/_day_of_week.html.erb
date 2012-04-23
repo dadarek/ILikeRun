@@ -1,0 +1,5 @@
+
+<%= form_for Schedule.new do |f| %>
+  <input type="hidden" name="day_of_week" value="<%=@day_of_week%>" />
+  <%= image_submit_tag "not-running.jpg" %>
+<% end %>
