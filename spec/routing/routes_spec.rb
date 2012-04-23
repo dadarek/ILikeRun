@@ -11,7 +11,10 @@ describe "route tests" do
     {get: "/run_logs/54/edit"}.should_not be_routable
     {put: "/run_logs/54"}.should_not be_routable
     {delete: "/run_logs/54"}.should_not be_routable
+  end
 
+  it "allows get schedules" do
+    {get: "/schedules"}.should route_to "schedules#index"
   end
 
   it "user only allows get and post to login" do

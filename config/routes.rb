@@ -3,6 +3,7 @@ ILikeRun::Application.routes.draw do
   # first created -> highest priority.
   #
   
+  resources :schedules, only: [:index]
   resources :run_logs, only: [:create, :new, :index]
 
   match '/users/logout' => 'users#logout', via: :get, as: "logout"
