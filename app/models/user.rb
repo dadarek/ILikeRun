@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :user_name, uniqueness: {case_sensitive: false}
 
   before_validation :generate_salt
-  before_save :encrypt_password, :disallow_update
+  before_save :encrypt_password, :disallow_update, :create_schedule
 
   def generate_salt
     self.salt = BCrypt::Engine.generate_salt
@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     if not id.nil?
       throw :update_disallowed
     end
+  end
+
+  def create_schedule
+    self.schedule = Schedule.create!(user_id: self.id)
   end
 
   def self.authenticate user_name, password

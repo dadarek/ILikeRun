@@ -51,4 +51,9 @@ describe User do
     User.authenticate( "john", "deere" ).should be_nil
   end
 
+  it "has a default schedule" do
+    user = create_user
+    user.schedule.should_not be_nil
+  end
+
 end
