@@ -1,7 +1,7 @@
 
-<% if controller.current_user %>
+<% if current_user %>
   <div class="welcome-text">
-    Welcome, <%=controller.current_user.user_name%>!
+    Welcome, <%=current_user.user_name%>!
   </div>
 <% end %>
 

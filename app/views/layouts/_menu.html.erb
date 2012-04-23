@@ -1,4 +1,4 @@
-<% if controller.current_user %>
+<% if current_user %>
   <a href="#" class="button">Schedule</a>
   <%= link_to "History", :run_logs, class: 'button' %>
   <%= link_to "Logout", :logout, class: 'button' %>

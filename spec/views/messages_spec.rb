@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "layouts/_messages" do
 
   before :each do
-    view.controller.stub(:current_user).and_return(nil)
+    view.stub(:current_user).and_return(nil)
   end
 
   def have_notice
@@ -47,7 +47,7 @@ describe "layouts/_messages" do
   
   it "renders welcome text if user present" do
     user = User.create!( user_name: "mario", password: "luigi" )
-    view.controller.stub(:current_user).and_return(user)
+    view.stub(:current_user).and_return(user)
     render
     rendered.should have_welcome("mario")
   end
