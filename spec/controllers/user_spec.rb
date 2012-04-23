@@ -64,7 +64,5 @@ describe UsersController do
     end
 
     pending "expires after 30 minutes"
-
-    pending "logout"
   end
 end
