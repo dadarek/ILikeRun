@@ -12,8 +12,6 @@ describe UsersController do
       login
       (get :login).should redirect_to(:new_run_log)
     end
-
-    pending "redirect to home from run logs if not logged in"
   end
 
   describe "#logout" do
