@@ -5,7 +5,6 @@ describe SchedulesController do
   before :each do
     @user = create_user
     login @user
-    @schedule = @user.schedule
   end
 
   describe "#index" do
@@ -27,14 +26,15 @@ describe SchedulesController do
 
   describe "#delete" do
     it "sets yes-running days to not-running days" do
-      @schedule.monday = true
-      @schedule.saturday = true
+      @user.schedule.monday = true
+      @user.schedule.saturday = true
+      @user.schedule.save!
 
       delete :destroy, day_of_week: "Monday"
       delete :destroy, day_of_week: "Saturday"
-      @schedule.reload
-      @schedule.monday.should == false
-      @schedule.saturday.should == false
+      @user.reload
+      @user.schedule.monday.should == false
+      @user.schedule.saturday.should == false
     end
 
     it "redirects to schedule page" do
@@ -46,9 +46,9 @@ describe SchedulesController do
     it "sets not-running days to yes-running days" do
       post :create, day_of_week: "Tuesday"
       post :create, day_of_week: "Wednesday"
-      @schedule.reload
-      @schedule.tuesday.should == true
-      @schedule.wednesday.should == true
+      @user.reload
+      @user.schedule.tuesday.should == true
+      @user.schedule.wednesday.should == true
     end
 
     it "redirects to schedule page" do

@@ -36,7 +36,8 @@ def create_user(user_name = "John", password = "Smith")
 end
 
 def login user
-  @controller.stub(:current_user).and_return(user)
+  session = {user_id: user.id}
+  @controller.stub(:session).and_return(session)
 end
 
 def stub_views_current_user user

@@ -19,8 +19,9 @@ class SchedulesController < ApplicationController
     day_of_week = params[:day_of_week]
     day_of_week.downcase!
     day_of_week << "="
-    current_user.schedule.send(day_of_week, value)
-    current_user.schedule.save!
+    schedule = current_user.schedule
+    schedule.send(day_of_week, value)
+    schedule.save!
   end
 
 end
