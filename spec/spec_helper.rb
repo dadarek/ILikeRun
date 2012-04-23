@@ -38,3 +38,7 @@ end
 def login
   @controller.stub(:current_user).and_return(@user)
 end
+
+def stub_views_current_user(user = nil)
+  @view.stub(:current_user).and_return(user)
+end
