@@ -2,9 +2,13 @@ require 'spec_helper'
 
 describe SchedulesController do
 
+  def create_schedule user
+    Schedule.create!( user_id: user.id )
+  end
+
   it "returns users schedule" do
     user = create_user
-    Schedule.create!( user_id: user.id )
+    create_schedule user
 
     login user
     get :index
@@ -15,8 +19,8 @@ describe SchedulesController do
     u1 = create_user("a", "p")
     u2 = create_user("b", "q")
 
-    Schedule.create! user_id: u1.id 
-    Schedule.create! user_id: u2.id
+    create_schedule u1
+    create_schedule u2
 
     login u2
     get :index
