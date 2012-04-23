@@ -31,8 +31,3 @@ Feature: User Access
     Then I should not be logged in
     And I should be on the "home page" screen
 
-    # TODO 
-    # Question for Eric:
-    # Should I write a scenario for
-    # encrypted passwords?
-
