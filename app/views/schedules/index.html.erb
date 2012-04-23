@@ -12,16 +12,11 @@
   
   </tr><tr>
 
-  <% running = image_tag("yes-running.jpg") %>
-  <% not_running = image_tag("not-running.jpg") %>
-
-  <td><%= @schedule.sunday ? running : not_running %></td>
-  <td><%= @schedule.monday ? running : not_running %></td>
-  <td><%= @schedule.tuesday ? running : not_running %></td>
-  <td><%= @schedule.wednesday ? running : not_running %></td>
-  <td><%= @schedule.thursday ? running : not_running %></td>
-  <td><%= @schedule.friday ? running : not_running %></td>
-  <td><%= @schedule.saturday ? running : not_running %></td>
+  <% Date::DAYNAMES.each{ |day| %>
+    <td>
+      <%= render partial: "day_of_week", locals: {day_of_week: day } %>
+    </td>
+  <% } %>
 
   </tr>
 </table>

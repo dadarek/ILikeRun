@@ -1,5 +1,10 @@
+<%
+  runs_today = @schedule.send(day_of_week.downcase.to_sym)
+  method = runs_today ? :delete : :post
+  image_to_use = runs_today ? "yes-running.jpg" : "not-running.jpg"
+%>
 
-<%= form_for Schedule.new do |f| %>
-  <input type="hidden" name="day_of_week" value="<%=@day_of_week%>" />
-  <%= image_submit_tag "not-running.jpg" %>
+<%= form_for Schedule.new, method: method do |f| %>
+  <input type="hidden" name="day_of_week" value="<%=day_of_week%>" />
+  <%= image_submit_tag image_to_use %>
 <% end %>

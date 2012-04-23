@@ -10,7 +10,7 @@ describe "schedules/index" do
     }
   end
 
-  it "displays yes and no images" do
+  it "renders appropriate images" do
     schedule = Schedule.new
     schedule.monday = true
     schedule.saturday  = true
@@ -18,8 +18,8 @@ describe "schedules/index" do
 
     assign :schedule, schedule
     render
-    rendered.should have_selector "img[src$='not-running.jpg']", count: 4
-    rendered.should have_selector "img[src$='yes-running.jpg']", count: 3
+    rendered.should have_selector "input[src$='not-running.jpg']", count: 4
+    rendered.should have_selector "input[src$='yes-running.jpg']", count: 3
   end
 
 end
