@@ -3,8 +3,8 @@ require 'spec_helper'
 describe RunLogsController do
 
   before :each do
-    create_user
-    login
+    @user = create_user
+    login @user
   end
 
   describe "#create" do

@@ -32,13 +32,13 @@ RSpec.configure do |config|
 end
 
 def create_user(user_name = "John", password = "Smith")
-  @user = User.create!(user_name: user_name, password: password)
+  User.create!(user_name: user_name, password: password)
 end
 
-def login
-  @controller.stub(:current_user).and_return(@user)
+def login user
+  @controller.stub(:current_user).and_return(user)
 end
 
-def stub_views_current_user(user = nil)
+def stub_views_current_user user
   @view.stub(:current_user).and_return(user)
 end

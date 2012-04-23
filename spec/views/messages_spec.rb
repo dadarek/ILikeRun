@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "layouts/_messages" do
 
   before :each do
-    stub_views_current_user
+    stub_views_current_user nil
   end
 
   def have_notice
@@ -46,10 +46,10 @@ describe "layouts/_messages" do
   end
   
   it "renders welcome text if user present" do
-    user = User.create!( user_name: "mario", password: "luigi" )
+    user = create_user
     stub_views_current_user user
     render
-    rendered.should have_welcome("mario")
+    rendered.should have_welcome(user.user_name)
   end
 
 end

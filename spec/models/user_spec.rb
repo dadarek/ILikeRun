@@ -11,13 +11,13 @@ describe User do
   end
 
   it "creates salt on save" do
-    create_user
-    @user.salt.should_not be_nil
+    user = create_user
+    user.salt.should_not be_nil
   end
 
   it "does not allow updates" do
-    create_user
-    lambda{ @user.save }.should throw_symbol( :update_disallowed )
+    user = create_user
+    lambda{ user.save }.should throw_symbol( :update_disallowed )
   end
 
   it "requires unique usernames" do
@@ -26,20 +26,20 @@ describe User do
   end
 
   it "encrypts password before saving" do
-    create_user("san", "francisco")
-    encrypted = BCrypt::Engine.hash_secret "francisco", @user.salt
-    @user.password.should == encrypted
+    user = create_user("san", "francisco")
+    encrypted = BCrypt::Engine.hash_secret "francisco", user.salt
+    user.password.should == encrypted
   end
 
   it "returns a valid user on succesful authentication" do
-    create_user("rudolph", "santa")
-    User.authenticate("rudolph", "santa").should == @user
+    user = create_user("rudolph", "santa")
+    User.authenticate("rudolph", "santa").should == user
   end
   
   it "ignores case on user_name" do
-    create_user("name", "pw")
-    User.authenticate( "NAME", "pw" ).should == @user
-    User.authenticate( "name", "pw" ).should == @user
+    user = create_user("name", "pw")
+    User.authenticate( "NAME", "pw" ).should == user
+    User.authenticate( "name", "pw" ).should == user
   end
 
   it "returns nil on bad password" do
@@ -52,9 +52,10 @@ describe User do
   end
 
   it "has run logs" do
-    create_user
-    run_log = RunLog.create!(time_ran: 20, user_id: @user.id)
-    @user.run_logs.first.should == run_log
+    pending "dump this test"
+    user = create_user
+    run_log = RunLog.create!(time_ran: 20, user_id: user.id)
+    user.run_logs.first.should == run_log
   end
 
 end

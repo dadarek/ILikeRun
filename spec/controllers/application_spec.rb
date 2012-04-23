@@ -11,7 +11,7 @@ module ApplicationControllerTests
   describe TestController do
 
     before :each do
-      create_user
+      @user = create_user
     end
 
     it "redirects to login if not authenticated" do

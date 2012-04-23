@@ -8,8 +8,7 @@ describe UsersController do
 
   describe "#login" do
     it "redirects to new -run-log if already logged in" do
-      create_user
-      login
+      login(create_user)
       (get :login).should redirect_to(:new_run_log)
     end
   end
@@ -21,18 +20,19 @@ describe UsersController do
 
     it "delegates to ApplicationController.logged_out" do
       @controller.should_receive(:logged_out)
-      create_user
-      login
+      login(create_user)
       get :logout
     end
   end
 
   describe "#authenticate" do
-    def params
-      {user_name: "b", password: "c"}
+    before :each do
+      @user_name = "somebody"
+      @password = "somepassword"
     end
+
     def make_post
-      post :authenticate, user: params 
+      post :authenticate, user: {user_name: @user_name, password: @password } 
     end
 
     it "redirects to login on invalid credentials" do
@@ -45,18 +45,18 @@ describe UsersController do
     end
 
     it "redirects to add-run-log on valid credentials" do
-      User.create! params 
+      create_user(@user_name, @password)
       make_post.should redirect_to(:new_run_log)
     end
 
     it "does not create alert on valid credentials" do
-      User.create! params 
+      create_user(@user_name, @password)
       make_post
       flash.now[:alert].should be_nil
     end
 
     it "delegates to ApplicationController.logged_in" do
-      user = User.create! params 
+      user = create_user(@user_name, @password)
       @controller.should_receive(:logged_in).with(user)
       make_post
     end
