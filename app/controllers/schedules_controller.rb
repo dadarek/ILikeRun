@@ -1,7 +1,7 @@
 class SchedulesController < ApplicationController
 
   def index
-    @schedule = Schedule.first
+    @schedule = current_user.schedule
   end
 
 end
