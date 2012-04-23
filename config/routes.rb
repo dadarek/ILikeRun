@@ -3,12 +3,15 @@ ILikeRun::Application.routes.draw do
   # first created -> highest priority.
   #
   
-  resources :schedules, only: [:index]
   resources :run_logs, only: [:create, :new, :index]
 
   match '/users/logout' => 'users#logout', via: :get, as: "logout"
   match '/users/login' => 'users#login', via: :get
   match '/users/login' => 'users#authenticate', via: :post, as: "authenticate"
+
+  resources :schedules, only: [:index, :create]
+  match '/schedules' => 'schedules#destroy', via: :delete
+
   root to: 'users#login'
 
   # Sample of regular route:
