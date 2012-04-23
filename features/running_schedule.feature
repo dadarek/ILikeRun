@@ -26,3 +26,9 @@ Feature: Running Schedule
     And I click on "Save"
     Then My schedule should have Monday, Tuesday, and Saturday
 
+  @wip
+  Scenario: Other users updating their schedule
+    Given There are 2 users in the system
+    And One user updates his schedule
+    Then The other users schedule should not be affected
+

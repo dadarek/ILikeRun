@@ -39,7 +39,7 @@ describe UsersController do
       make_post.should redirect_to :users_login
     end
 
-    it "creates alert on credentials" do
+    it "creates alert on invalid credentials" do
       make_post
       flash.now[:alert].should_not be_nil
     end
