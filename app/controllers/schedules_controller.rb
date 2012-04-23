@@ -8,14 +8,20 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
-    current_user.schedule.monday = false
+    day_of_week = params[:day_of_week]
+    day_of_week.downcase!
+    day_of_week << "="
+    current_user.schedule.send(day_of_week, false)
     current_user.schedule.save!
 
     render nothing: true
   end
 
   def create
-    current_user.schedule.tuesday = true
+    day_of_week = params[:day_of_week]
+    day_of_week.downcase!
+    day_of_week << "="
+    current_user.schedule.send(day_of_week, true)
     current_user.schedule.save!
 
     render nothing: true
