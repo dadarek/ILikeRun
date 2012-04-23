@@ -32,9 +32,9 @@ describe SchedulesController do
     it "assigns blank schedule if none exists" do
       get :index
       assigns(:schedule).should be_instance_of(Schedule)
+      pending "get rid of this after all users should have a schedule"
     end
 
-    pending "all users should have a schedule"
   end
 
   describe "#delete" do
