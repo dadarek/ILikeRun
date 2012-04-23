@@ -28,6 +28,12 @@ describe SchedulesController do
       get :index
       assigns(:schedule).should == u2.schedule
     end
+
+    it "assigns blank schedule if none exists" do
+      login(create_user)
+      get :index
+      assigns(:schedule).should be_instance_of(Schedule)
+    end
   end
 
 end
