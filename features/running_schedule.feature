@@ -3,12 +3,20 @@ Feature: Running Schedule
   As an obsessed runner
   I would like to manage a running schedule
 
-  @wip
   Scenario: Viewing Current Schedule
     Given I am logged in
-    And My schedule has Tuesday, Wednesday, and Saturday
+    And My schedule has the following days
+      | day       |
+      | Tuesday   |
+      | Wednesday |
+      | Saturday  |
+
     When I click on "Schedule"
-    Then I should see Tuesday, Wednesday, and Saturday
+    Then I should see the following days
+      | day       |
+      | Tuesday   |
+      | Wednesday |
+      | Saturday  |
 
   @wip
   Scenario: Removing Days from Schedule
