@@ -1,5 +1,5 @@
 Given /I am on the Run log page/ do
-  visit "/run_logs/new"
+  visit new_run_log_path
 end
 
 When /I enter (\-?\d+) minutes for my time ran/ do |minutes|

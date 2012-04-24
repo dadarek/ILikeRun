@@ -1,9 +1,9 @@
 Given /I visit the run log history screen/ do
-  visit '/run_logs'
+  visit run_logs_path
 end
 
 Given /I am on the enter-run-log page/ do
-  visit '/run_logs/new'
+  visit new_run_log_path
 end
 
 When /I click on history/ do
