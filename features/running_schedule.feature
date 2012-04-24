@@ -18,14 +18,21 @@ Feature: Running Schedule
       | Wednesday |
       | Saturday  |
 
-  @wip
   Scenario: Removing Days from Schedule
     Given I am logged in
-    And My schedule has Tuesday, Wednesday, and Saturday
-    When I click on "Update Schedule"
-    And I deselect Tuesday
-    And I click on "Save"
-    Then My schedule should have Wednesday and Saturday
+    And My schedule has the following days
+      | day       |
+      | Tuesday   |
+      | Wednesday |
+      | Saturday  |
+
+    And I am on the schedule page
+
+    When I click on the image for "Tuesday"
+    Then I should see the following days
+    | day       |
+    | Wednesday |
+    | Saturday  |
 
   @wip
   Scenario: Adding Days to Schedule
