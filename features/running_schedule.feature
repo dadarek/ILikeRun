@@ -22,6 +22,8 @@ Feature: Running Schedule
       | Friday    |          |
       | Saturday  |    X     |
 
+      #########################################
+
   Scenario: Removing Days from Schedule
     Given I am logged in
     And My schedule has the following days
@@ -43,14 +45,29 @@ Feature: Running Schedule
       | Friday    |          |
       | Saturday  |    X     |
 
-  @wip
+      #########################################
+
   Scenario: Adding Days to Schedule
     Given I am logged in
-    And My schedule has Tuesday and Saturday
-    When I click on "Update Schedule"
-    And I select Monday
-    And I click on "Save"
-    Then My schedule should have Monday, Tuesday, and Saturday
+    And My schedule has the following days
+      | day       |
+      | Tuesday   |
+      | Saturday  |
+
+    And I am on the schedule page
+
+    When I click on the image for "Monday"
+    Then My schedule should look like this
+      | day       | running? |
+      | Sunday    |          |
+      | Monday    |    X     |
+      | Tuesday   |    X     |
+      | Wednesday |          |
+      | Thursday  |          |
+      | Friday    |          |
+      | Saturday  |    X     |
+
+      #########################################
 
   @wip
   Scenario: Other users updating their schedule
