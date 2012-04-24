@@ -11,13 +11,22 @@ Given /I am on the schedule page/ do
 end
 
 When /I click on the image for "(.+)"/ do |day|
-
+  page.find(:css, image_for(day) ).click
 end
 
-Then /I should see the following days/ do | table |
+Then /My schedule should look like this/ do | table |
   table.hashes.each do |hash|
-    day = hash[:day]
-    page.should have_selector "input[value='#{day}'] ~ input[src$='yes-running.jpg']"
+    day_css = image_for(hash[:day])
+    running = hash[:running?] == "X"
+
+    if running 
+      page.should have_selector day_css
+    else
+      page.should_not have_selector day_css
+    end
   end
 end
 
+def image_for day
+  "input[value='#{day}'] ~ input[src$='yes-running.jpg']"
+end

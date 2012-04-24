@@ -12,11 +12,15 @@ Feature: Running Schedule
       | Saturday  |
 
     When I click on "Schedule"
-    Then I should see the following days
-      | day       |
-      | Tuesday   |
-      | Wednesday |
-      | Saturday  |
+    Then My schedule should look like this
+      | day       | running? |
+      | Sunday    |          |
+      | Monday    |          |
+      | Tuesday   |    X     |
+      | Wednesday |    X     |
+      | Thursday  |          |
+      | Friday    |          |
+      | Saturday  |    X     |
 
   Scenario: Removing Days from Schedule
     Given I am logged in
@@ -29,10 +33,15 @@ Feature: Running Schedule
     And I am on the schedule page
 
     When I click on the image for "Tuesday"
-    Then I should see the following days
-    | day       |
-    | Wednesday |
-    | Saturday  |
+    Then My schedule should look like this
+      | day       | running? |
+      | Sunday    |          |
+      | Monday    |          |
+      | Tuesday   |          |
+      | Wednesday |    X     |
+      | Thursday  |          |
+      | Friday    |          |
+      | Saturday  |    X     |
 
   @wip
   Scenario: Adding Days to Schedule
