@@ -19,7 +19,7 @@ Feature: List past runs
 
   Scenario: Navigating to runs
     Given I am logged in
-    And I am on the enter-run-log page
+    And I visit the enter-run-log screen 
     When I click on history
     Then I go to the history page
 

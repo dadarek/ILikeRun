@@ -32,7 +32,7 @@ Feature: Running Schedule
       | Wednesday |
       | Saturday  |
 
-    And I am on the schedule page
+    And I visit the schedule screen
 
     When I click on the image for "Tuesday"
     Then My schedule should look like this
@@ -54,7 +54,7 @@ Feature: Running Schedule
       | Tuesday   |
       | Saturday  |
 
-    And I am on the schedule page
+    And I visit the schedule screen
 
     When I click on the image for "Monday"
     Then My schedule should look like this

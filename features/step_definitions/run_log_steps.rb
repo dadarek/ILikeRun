@@ -1,4 +1,4 @@
-Given /I am on the Run log page/ do
+Given /I visit the Run log screen/ do
   visit new_run_log_path
 end
 

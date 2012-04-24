@@ -6,7 +6,7 @@ Given /My schedule has the following days/ do |table|
   @user.schedule.save!
 end 
 
-Given /I am on the schedule page/ do
+Given /I visit the schedule screen/ do
   visit schedules_path
 end
 

@@ -2,7 +2,7 @@ Given /I visit the run log history screen/ do
   visit run_logs_path
 end
 
-Given /I am on the enter-run-log page/ do
+Given /I visit the enter-run-log screen/ do
   visit new_run_log_path
 end
 
