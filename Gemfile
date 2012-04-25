@@ -53,6 +53,7 @@ gem "capybara"
 group :test do
   gem "cucumber-rails", require: false
   gem "database_cleaner"
+  gem "jasmine"
 end
 
 gem 'bcrypt-ruby', require: 'bcrypt'
