@@ -28,15 +28,15 @@ When /Other users have also entered runs in the past/ do
 end
 
 Then /I should see my runs$/ do
-  page.body.should =~ /20/
-  page.body.should =~ /30/
-  page.body.should =~ /40/
+  page.body.should have_selector("td", text: /^20$/)
+  page.body.should have_selector("td", text: /^30$/)
+  page.body.should have_selector("td", text: /^40$/)
 end
 
 Then /I should not see other peoples runs$/ do
-  page.body.should_not =~ /25/
-  page.body.should_not =~ /63/
-  page.body.should_not =~ /46/
+  page.body.should_not have_selector("td", text: /^25$/)
+  page.body.should_not have_selector("td", text: /^46$/)
+  page.body.should_not have_selector("td", text: /^63$/)
 end
 
 Then /I should see my runs ordered by most-recent first/ do
