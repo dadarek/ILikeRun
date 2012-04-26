@@ -8,6 +8,10 @@ describe RunLog do
     @run_log.time_ran = 30
   end
 
+  it "Validates with a good date and time_ran" do
+    @run_log.should be_valid
+  end
+
   it "Rejects nil run times" do
     @run_log.time_ran = nil
     @run_log.should_not be_valid
@@ -23,11 +27,7 @@ describe RunLog do
     @run_log.should_not be_valid
   end
 
-  it "Accepts positive run times" do
-    @run_log.should be_valid
-  end
-
-  it "Rejects null dates" do
+  it "Rejects nil dates" do
     @run_log.created_at = nil
     @run_log.should_not be_valid
   end
