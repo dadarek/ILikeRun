@@ -15,16 +15,16 @@ Then /I go to the history page/ do
 end
 
 When /I have entered some runs in the past/ do
-  RunLog.create!(time_ran: 20, user_id: @user.id)
-  RunLog.create!(time_ran: 40, user_id: @user.id)
-  RunLog.create!(time_ran: 30, user_id: @user.id)
+  RunLog.create!(time_ran: 20, date_ran: Date.today - 3.days, user_id: @user.id)
+  RunLog.create!(time_ran: 40, date_ran: Date.today - 2.days, user_id: @user.id)
+  RunLog.create!(time_ran: 30, date_ran: Date.today - 1.days, user_id: @user.id)
 end
 
 When /Other users have also entered runs in the past/ do
   other_user = User.create!(user_name: "jonesy", password: "jones")
-  RunLog.create!(time_ran: 25, user_id: other_user.id)
-  RunLog.create!(time_ran: 46, user_id: other_user.id)
-  RunLog.create!(time_ran: 63, user_id: other_user.id)
+  RunLog.create!(time_ran: 25, date_ran: Date.today, user_id: other_user.id)
+  RunLog.create!(time_ran: 46, date_ran: Date.today, user_id: other_user.id)
+  RunLog.create!(time_ran: 63, date_ran: Date.today, user_id: other_user.id)
 end
 
 Then /I should see my runs$/ do
