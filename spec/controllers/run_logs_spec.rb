@@ -10,7 +10,7 @@ describe RunLogsController do
   describe "#create" do
     context "a valid post" do
       before :each do
-        @params = { time_ran: 30 }
+        @params = { time_ran: 30, created_at: Date.today }
         post :create, run_log: @params
       end
 
