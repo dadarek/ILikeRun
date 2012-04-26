@@ -28,4 +28,10 @@ describe "run_logs/new" do
 
     rendered.should have_selector("input[value='#{date.to_s}']")
   end
+
+  it "contains the data-calendar attribute for jQueryUI calendar" do
+    @run_log = RunLog.new
+    render
+    rendered.should have_selector("input[data-calendar='true']")
+  end
 end
