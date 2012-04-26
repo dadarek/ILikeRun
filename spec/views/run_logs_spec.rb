@@ -12,11 +12,11 @@ describe "run_logs/index" do
     
     render
 
-    rendered.should =~ /30/
-    rendered.should =~ /60/
+    rendered.should have_selector("td", text: "30")
+    rendered.should have_selector("td", text: "60")
 
-    rendered.should =~ Regexp.new(day1.to_s)
-    rendered.should =~ Regexp.new(day2.to_s)
+    rendered.should have_selector("td", text: day1.to_s)
+    rendered.should have_selector("td", text: day2.to_s)
   end
 end
 
@@ -26,6 +26,6 @@ describe "run_logs/new" do
     @run_log = RunLog.new(date_ran: date)
     render
 
-    rendered.should =~ Regexp.new(date.to_s)
+    rendered.should have_selector("input[value='#{date.to_s}']")
   end
 end
