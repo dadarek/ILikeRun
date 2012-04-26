@@ -5,8 +5,8 @@ describe "run_logs/index" do
     day1 = Date.today
     day2 = Date.today - 3.days
 
-    log1 = stub_model(RunLog, {time_ran: 30, created_at: day1})
-    log2 = stub_model(RunLog, {time_ran: 60, created_at: day2})
+    log1 = stub_model(RunLog, {time_ran: 30, date_ran: day1})
+    log2 = stub_model(RunLog, {time_ran: 60, date_ran: day2})
 
     assign(:run_logs, [log1, log2])
     
