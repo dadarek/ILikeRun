@@ -10,7 +10,7 @@ describe RunLogsController do
   describe "#create" do
     context "a valid post" do
       before :each do
-        @params = { time_ran: 30, created_at: Date.today }
+        @params = { time_ran: 30, created_at: Date.today - 10.days }
         post :create, run_log: @params
       end
 
@@ -19,7 +19,7 @@ describe RunLogsController do
       end
 
       it "creates a RunLog with correct date" do
-        RunLog.first.created_at.to_date.should == Date.today
+        RunLog.first.created_at.to_date.should == @params[:created_at]
       end
 
       it "stores success message in flash" do
