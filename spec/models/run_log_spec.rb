@@ -4,7 +4,7 @@ describe RunLog do
 
   before :each do
     @run_log = RunLog.new
-    @run_log.created_at = Date.today
+    @run_log.date_ran = Date.today
     @run_log.time_ran = 30
   end
 
@@ -28,7 +28,7 @@ describe RunLog do
   end
 
   it "Rejects nil dates" do
-    @run_log.created_at = nil
+    @run_log.date_ran = nil
     @run_log.should_not be_valid
   end
 
