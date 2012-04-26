@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe RunLogsController do
 
-  pending "fills in default date as today"
-
   before :each do
     @user = create_user
     login @user
@@ -76,6 +74,13 @@ describe RunLogsController do
       result = RunLog.create!(time_ran: 20, date_ran: date_ran, user_id: @user.id)
       result.save
       result
+    end
+  end
+
+  describe "#new" do
+    it "initializes date_ran to todays date" do
+      get :new
+      assigns[:run_log].date_ran.should == Date.today
     end
   end
 

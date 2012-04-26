@@ -2,6 +2,7 @@ class RunLogsController < ApplicationController
 
   def new
     @run_log = RunLog.new
+    @run_log.date_ran = Date.today
   end
 
   def create
