@@ -19,3 +19,13 @@ describe "run_logs/index" do
     rendered.should =~ Regexp.new(day2.to_s)
   end
 end
+
+describe "run_logs/new" do
+  it "displays the default date_ran" do
+    date = Date.today - 3.days
+    @run_log = RunLog.new(date_ran: date)
+    render
+
+    rendered.should =~ Regexp.new(date.to_s)
+  end
+end

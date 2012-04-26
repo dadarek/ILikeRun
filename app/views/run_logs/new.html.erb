@@ -1,14 +1,12 @@
 
-<h2>Add New Run</h2>
+<h2>Log Your Run</h2>
 
 <p>
-  <span class="info">Please enter how many minutes you ran today:</span>
-  <br />
-  <%= form_for RunLog.new do |f| %>
-    <%= f.text_field :time_ran %>
+  <%= form_for @run_log do |f| %>
+    <%= f.text_field :date_ran, class: "date", placeholder: "select a date" %>
+    <br />
+    <%= f.text_field :time_ran, placeholder: "enter minutes ran" %>
+    <br />
     <%= f.submit "Save" %>
   <% end %>
 </p>
-
-<input type="text" class="el_date" />
-
