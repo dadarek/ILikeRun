@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe RunLogsController do
 
+  pending "fills in default date as today"
+
   before :each do
     @user = create_user
     login @user
@@ -10,7 +12,7 @@ describe RunLogsController do
   describe "#create" do
     context "a valid post" do
       before :each do
-        @params = { time_ran: 30, created_at: Date.today - 10.days }
+        @params = { time_ran: 30, date_ran: Date.today - 10.days }
         post :create, run_log: @params
       end
 
@@ -19,7 +21,7 @@ describe RunLogsController do
       end
 
       it "creates a RunLog with correct date" do
-        RunLog.first.created_at.to_date.should == @params[:created_at]
+        RunLog.first.date_ran.to_date.should == @params[:date_ran]
       end
 
       it "stores success message in flash" do
@@ -63,16 +65,15 @@ describe RunLogsController do
 
     it "only returns logged-in users logs" do
       other_user = User.create!( user_name: "John Smith", password: "apple" )
-      log = RunLog.create!(time_ran: 55, user_id: other_user.id)
+      log = RunLog.create!(time_ran: 55, date_ran: Date.today, user_id: other_user.id)
 
       get :index
       logs = assigns(:run_logs)
       logs.should_not include(log)
     end
 
-    def new_log(time_ran, day)
-      result = RunLog.create!(time_ran: 20, user_id: @user.id)
-      result.created_at = day
+    def new_log(time_ran, date_ran)
+      result = RunLog.create!(time_ran: 20, date_ran: date_ran, user_id: @user.id)
       result.save
       result
     end

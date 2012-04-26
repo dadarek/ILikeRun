@@ -22,7 +22,7 @@ class RunLogsController < ApplicationController
 
   def index
     user_logs = current_user.run_logs
-    @run_logs = user_logs.sort{ |a, b| b.created_at <=> a.created_at }
+    @run_logs = user_logs.sort{ |a, b| b.date_ran <=> a.date_ran }
   end
 
 end
