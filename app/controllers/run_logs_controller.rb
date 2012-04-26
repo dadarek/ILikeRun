@@ -6,19 +6,19 @@ class RunLogsController < ApplicationController
   end
 
   def create
-    @run_log = RunLog.new
-
     attributes = params[:run_log]
     attributes[:user_id] = current_user.id
     log = RunLog.new(attributes)
 
     if log.save then
       flash[:notice] = "Your run was succesfully posted!"
+      redirect_to action: :new
     else
+      @run_log = log
       flash[:alert] = log.errors.full_messages[0]
+      render :new
     end
 
-    redirect_to action: :new
   end
 
   def index
