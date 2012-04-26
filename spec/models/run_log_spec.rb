@@ -32,4 +32,14 @@ describe RunLog do
     @run_log.should_not be_valid
   end
 
+  it "Rejects invalid dates" do
+    @run_log.date_ran = 5
+    @run_log.should_not be_valid
+  end
+
+  it "Rejects future dates" do
+    @run_log.date_ran = Date.today + 1.day
+    @run_log.should_not be_valid
+  end
+
 end
