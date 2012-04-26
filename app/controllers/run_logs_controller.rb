@@ -6,16 +6,13 @@ class RunLogsController < ApplicationController
   end
 
   def create
-    attributes = params[:run_log]
-    attributes[:user_id] = current_user.id
-    log = RunLog.new(attributes)
+    @run_log = create_log_from_params
 
-    if log.save then
+    if @run_log.save then
       flash[:notice] = "Your run was succesfully posted!"
       redirect_to action: :new
     else
-      @run_log = log
-      flash[:alert] = log.errors.full_messages[0]
+      flash[:alert] = @run_log.errors.full_messages[0]
       render :new
     end
 
@@ -24,6 +21,14 @@ class RunLogsController < ApplicationController
   def index
     user_logs = current_user.run_logs
     @run_logs = user_logs.sort{ |a, b| b.date_ran <=> a.date_ran }
+  end
+
+  private
+
+  def create_log_from_params
+    attributes = params[:run_log]
+    attributes[:user_id] = current_user.id
+    RunLog.new(attributes)
   end
 
 end
