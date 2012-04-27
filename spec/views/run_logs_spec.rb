@@ -1,31 +1,30 @@
 require 'spec_helper'
 
 describe "run_logs/index" do
+
+  before :each do
+    @log1 = RunLog.new(date_ran: Date.today, time_ran: 30)
+    @log2 = RunLog.new(date_ran: Date.today - 1.day, time_ran: 60)
+  end
+
   it "renders date and minutes for each run log" do
-    day1 = Date.today
-    day2 = Date.today - 3.days
-
-    log1 = stub_model(RunLog, {time_ran: 30, date_ran: day1})
-    log2 = stub_model(RunLog, {time_ran: 60, date_ran: day2})
-
-    assign(:run_logs, [log1, log2])
+    assign(:run_logs, [@log1, @log2])
     
     render
 
-    rendered.should have_selector("td", text: "30")
-    rendered.should have_selector("td", text: "60")
+    rendered.should have_selector("td", text: @log1.time_ran)
+    rendered.should have_selector("td", text: @log2.time_ran)
 
-    rendered.should have_selector("td", text: day1.to_s)
-    rendered.should have_selector("td", text: day2.to_s)
+    rendered.should have_selector("td", text: @log1.date_ran.to_s)
+    rendered.should have_selector("td", text: @log2.date_ran.to_s)
   end
 
   it "renders a delete button for each run log" do
-    log = stub_model(RunLog, {time_ran: 30, date_ran: Date.today})
-    assign(:run_logs, [log])
+    assign(:run_logs, [@log1])
     
     render
 
-    rendered.should have_selector("form input[data-delete-log='#{log.id}']")
+    rendered.should have_selector("form input[data-delete-log='#{@log1.id}']")
     rendered.should have_selector("form input[name='_method'][value='delete']")
   end
 end
