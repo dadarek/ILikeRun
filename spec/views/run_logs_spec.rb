@@ -18,6 +18,16 @@ describe "run_logs/index" do
     rendered.should have_selector("td", text: day1.to_s)
     rendered.should have_selector("td", text: day2.to_s)
   end
+
+  it "renders a delete button for each run log" do
+    log = stub_model(RunLog, {time_ran: 30, date_ran: Date.today})
+    assign(:run_logs, [log])
+    
+    render
+
+    rendered.should have_selector("form input[data-delete-log='#{log.id}']")
+    rendered.should have_selector("form input[name='_method'][value='delete']")
+  end
 end
 
 describe "run_logs/new" do

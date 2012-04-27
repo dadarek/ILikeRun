@@ -7,14 +7,20 @@
 
 <table>
   <tr>
+    <th>&nbsp;</th>
     <th>Date</th>
     <th>Minutes</th>
   </tr>
-<% @run_logs.each do |x| %>
+<% @run_logs.each do |run_log| %>
 
   <tr>
-    <td><%=x.date_ran.to_date%></td>
-    <td><%=x.time_ran%></td>
+    <td>
+      <%= form_for run_log, method: :delete do |f| %>
+        <input data-delete-log="<%=run_log.id%>" type="submit" />
+      <% end %>
+    </td>
+    <td><%=run_log.date_ran.to_date%></td>
+    <td><%=run_log.time_ran%></td>
   </tr>
 
 <% end %>

@@ -6,11 +6,11 @@ describe "route tests" do
     {post: "/run_logs"}.should route_to "run_logs#create"
     {get: "/run_logs"}.should route_to "run_logs#index"
     {get: "/run_logs/new"}.should route_to "run_logs#new"
+    {delete: "/run_logs/54"}.should route_to( controller: "run_logs", action: "destroy", id: "54" )
 
     {get: "/run_logs/54"}.should_not be_routable
     {get: "/run_logs/54/edit"}.should_not be_routable
     {put: "/run_logs/54"}.should_not be_routable
-    {delete: "/run_logs/54"}.should_not be_routable
   end
 
   it "allows get, post, and delete schedules" do
