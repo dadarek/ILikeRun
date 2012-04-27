@@ -5,11 +5,11 @@ describe "run_logs/index" do
   before :each do
     @log1 = RunLog.new(date_ran: Date.today, time_ran: 30)
     @log2 = RunLog.new(date_ran: Date.today - 1.day, time_ran: 60)
+
+    assign(:run_logs, [@log1, @log2])
   end
 
   it "renders date and minutes for each run log" do
-    assign(:run_logs, [@log1, @log2])
-    
     render
 
     rendered.should have_selector("td", text: @log1.time_ran)
@@ -20,8 +20,6 @@ describe "run_logs/index" do
   end
 
   it "renders a delete button for each run log" do
-    assign(:run_logs, [@log1])
-    
     render
 
     rendered.should have_selector("form input[data-delete-log='#{@log1.id}']")
