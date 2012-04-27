@@ -12,8 +12,8 @@ describe "run_logs/index" do
   it "renders date and minutes for each run log" do
     render
 
-    rendered.should have_selector("td", text: @log1.time_ran)
-    rendered.should have_selector("td", text: @log2.time_ran)
+    rendered.should have_selector("td", text: @log1.time_ran.to_s)
+    rendered.should have_selector("td", text: @log2.time_ran.to_s)
 
     rendered.should have_selector("td", text: @log1.date_ran.to_s)
     rendered.should have_selector("td", text: @log2.date_ran.to_s)
@@ -23,6 +23,7 @@ describe "run_logs/index" do
     render
 
     rendered.should have_selector("form input[data-delete-log='#{@log1.id}']")
+    rendered.should have_selector("form input[data-delete-log='#{@log2.id}']")
     rendered.should have_selector("form input[name='_method'][value='delete']")
   end
 end
