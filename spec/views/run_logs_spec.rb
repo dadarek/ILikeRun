@@ -3,8 +3,9 @@ require 'spec_helper'
 describe "run_logs/index" do
 
   before :each do
-    @log1 = RunLog.new(date_ran: Date.today, time_ran: 30)
-    @log2 = RunLog.new(date_ran: Date.today - 1.day, time_ran: 60)
+    user = create_user
+    @log1 = RunLog.create!(date_ran: Date.today - 1.day, time_ran: 30, user_id: user.id)
+    @log2 = RunLog.create!(date_ran: Date.today - 3.day, time_ran: 60, user_id: user.id)
 
     assign(:run_logs, [@log1, @log2])
   end
