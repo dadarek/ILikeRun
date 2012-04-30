@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 
-  def default
+  def get_user_logs
   end
 
 end
