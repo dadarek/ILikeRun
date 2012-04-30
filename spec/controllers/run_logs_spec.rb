@@ -191,8 +191,6 @@ describe RunLogsController do
   end
 
   def new_log(time_ran = 10, date_ran = Date.today)
-    result = RunLog.create!(time_ran: time_ran, date_ran: date_ran, user_id: @user.id)
-    result.save
-    result
+     RunLog.create!(time_ran: time_ran, date_ran: date_ran, user_id: @user.id)
   end
 end
