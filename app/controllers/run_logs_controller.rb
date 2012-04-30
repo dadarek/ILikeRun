@@ -10,7 +10,7 @@ class RunLogsController < ApplicationController
 
     if @run_log.save then
       flash[:notice] = "Your run was succesfully posted!"
-      redirect_to action: :new
+      redirect_to :new_run_log
     else
       flash[:alert] = @run_log.errors.full_messages[0]
       render :new
