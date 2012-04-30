@@ -8,12 +8,16 @@
 <table>
   <tr>
     <th>&nbsp;</th>
+    <th>&nbsp;</th>
     <th>Date</th>
     <th>Minutes</th>
   </tr>
 <% @run_logs.each do |run_log| %>
 
   <tr>
+    <td>
+      <%=link_to "Edit", edit_run_log_path(run_log.id)%>
+    </td>
     <td>
       <%= form_for run_log, method: :delete do |f| %>
         <%= f.submit "Delete", "data-delete-log"=> run_log.id %>

@@ -20,12 +20,19 @@ describe "run_logs/index" do
     rendered.should have_selector("td", text: @log2.date_ran.to_s)
   end
 
-  it "renders a delete button for each run log" do
+  it "renders a delete button for each log" do
     render
 
     rendered.should have_selector("form input[data-delete-log='#{@log1.id}']")
     rendered.should have_selector("form input[data-delete-log='#{@log2.id}']")
     rendered.should have_selector("form input[name='_method'][value='delete']")
+  end
+
+  it "renders an edit button for each log" do
+    render
+
+    rendered.should have_selector("a[href='#{edit_run_log_path(@log1.id)}']")
+    rendered.should have_selector("a[href='#{edit_run_log_path(@log2.id)}']")
   end
 end
 
