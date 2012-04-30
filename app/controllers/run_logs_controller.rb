@@ -23,6 +23,10 @@ class RunLogsController < ApplicationController
     @run_logs = user_logs.sort{ |a, b| b.date_ran <=> a.date_ran }
   end
 
+  def destroy
+    render nothing: true
+  end
+
   private
 
   def create_log_from_params

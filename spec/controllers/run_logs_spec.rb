@@ -97,12 +97,6 @@ describe RunLogsController do
       logs = assigns(:run_logs)
       logs.should_not include(log)
     end
-
-    def new_log(time_ran, date_ran)
-      result = RunLog.create!(time_ran: 20, date_ran: date_ran, user_id: @user.id)
-      result.save
-      result
-    end
   end
 
   describe "#new" do
@@ -112,4 +106,15 @@ describe RunLogsController do
     end
   end
 
+  describe "#destroy" do
+    it "deletes posted log" do
+      delete :destroy
+    end
+  end
+
+  def new_log(time_ran, date_ran)
+    result = RunLog.create!(time_ran: 20, date_ran: date_ran, user_id: @user.id)
+    result.save
+    result
+  end
 end
