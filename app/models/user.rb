@@ -29,11 +29,14 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate user_name, password
-    user = User.where('lower(user_name) = ?', user_name.downcase).first
-    if not user.nil?
+    user =     if not user.nil?
       hashed_password = hash_secret(password, user.salt)
       user if hashed_password == user.password
     end
+  end
+
+  def self.find_by_user_name user_name
+    User.where('lower(user_name) = ?', user_name.downcase).first
   end
 
   private

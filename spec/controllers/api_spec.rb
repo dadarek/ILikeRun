@@ -18,4 +18,11 @@ describe ApiController do
     response.body.should == user.run_logs.to_json( only: [:date_ran, :time_ran])
   end
 
+  it "ignores case" do
+    user = create_user("Bob")
+    RunLog.create!(time_ran: 50, date_ran: Date.today, user_id: user.id)
+    get :get_user_logs, user_name: "bob"
+    response.body.should == user.run_logs.to_json( only: [:date_ran, :time_ran])
+  end
+
 end
