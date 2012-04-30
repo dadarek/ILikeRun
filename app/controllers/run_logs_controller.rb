@@ -30,6 +30,10 @@ class RunLogsController < ApplicationController
     redirect_to :run_logs
   end
 
+  def edit
+    render :new
+  end
+
   private
 
   def create_log_from_params

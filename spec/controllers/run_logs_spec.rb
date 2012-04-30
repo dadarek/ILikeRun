@@ -122,6 +122,12 @@ describe RunLogsController do
     end
   end
 
+  describe "#edit" do
+    it "renders the new view" do
+      (get :edit, id: 0).should render_template :new
+    end
+  end
+
   def new_log(time_ran, date_ran)
     result = RunLog.create!(time_ran: 20, date_ran: date_ran, user_id: @user.id)
     result.save
