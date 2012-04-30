@@ -118,7 +118,7 @@ describe RunLogsController do
     end
 
     it "redirects to history" do
-      (delete :destroy, id: 0).should redirect_to :run_log
+      (delete :destroy, id: 0).should redirect_to :run_logs
     end
   end
 

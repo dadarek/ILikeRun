@@ -27,7 +27,7 @@ class RunLogsController < ApplicationController
     log = RunLog.find_by_id params[:id]
     log.destroy if not log.nil?
 
-    redirect_to :run_log
+    redirect_to :run_logs
   end
 
   private
