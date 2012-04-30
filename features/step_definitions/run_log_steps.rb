@@ -30,9 +30,3 @@ Then /I should see an error message/ do
   page.should have_selector ".alert"
 end
 
-Then /I should have a run log with date "([^"]+)" and time ran "([^"]+)"/ do |date_ran, time_ran|
-  log =  @user.run_logs.first
-  log.time_ran.should == Integer(time_ran)
-  log.date_ran.should == Date.parse(date_ran)
-end
-
