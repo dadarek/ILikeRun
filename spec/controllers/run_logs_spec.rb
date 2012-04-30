@@ -155,6 +155,12 @@ describe RunLogsController do
       log.date_ran.should == new_date
     end
 
+    it "redirects to index" do
+      log = new_log
+      params = { date_ran: log.date_ran, time_ran: log.time_ran }
+      (post :update, run_log: params, id: log.id).should redirect_to :run_logs
+    end
+
     pending "It redirects"
     pending "it reloads and sets @run_log"
     pending "it doesn't crash"

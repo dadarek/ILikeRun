@@ -42,7 +42,7 @@ class RunLogsController < ApplicationController
   def update
     log = RunLog.find_by_id params[:id]
     log.update_attributes! params[:run_log]
-    render nothing: true
+    redirect_to :run_logs
   end
 
   private
