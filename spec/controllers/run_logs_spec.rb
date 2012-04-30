@@ -166,7 +166,7 @@ describe RunLogsController do
     end
 
     context "Invalid updates" do
-      def dummy_post
+      def post_update
         post :update, run_log: {date_ran: nil, time_ran: nil}, id: @log.id
       end
 
@@ -175,17 +175,17 @@ describe RunLogsController do
       end
 
       it "sets errors on bad params" do
-        dummy_post
+        post_update
         flash[:alert].should_not be_nil
       end
 
       it "it sets @run_log on bad params" do
-        dummy_post
+        post_update
         assigns[:run_log].should == @log
       end
 
       it "renders new on bad params" do
-        dummy_post.should render_template :new
+        post_update.should render_template :new
       end
     end
   end
