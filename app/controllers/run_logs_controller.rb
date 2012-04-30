@@ -40,12 +40,12 @@ class RunLogsController < ApplicationController
   end
 
   def update
-    log = RunLog.find_by_id params[:id]
-    if log.nil?
+    @run_log = RunLog.find_by_id params[:id]
+    if @run_log.nil?
     else
-      if log.update_attributes params[:run_log]
+      if @run_log.update_attributes params[:run_log]
       else
-        flash[:alert] = log.errors.full_messages[0]
+        flash[:alert] = @run_log.errors.full_messages[0]
       end
     end
     redirect_to :run_logs

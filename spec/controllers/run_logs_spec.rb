@@ -172,7 +172,12 @@ describe RunLogsController do
       flash[:alert].should_not be_nil
     end
 
-    pending "it reloads and sets @run_log"
+    it "it sets @run_log on bad params" do
+      post :update, run_log: {date_ran: nil, time_ran: nil}, id: @log.id
+      assigns[:run_log].should == @log
+    end
+
+    pending "it renders new on bad params"
   end
 
   def new_log(time_ran = 10, date_ran = Date.today)
