@@ -116,6 +116,10 @@ describe RunLogsController do
     it "doesn't crash on invalid id" do
       delete :destroy, id: -1
     end
+
+    it "redirects to history" do
+      (delete :destroy, id: 0).should redirect_to :run_log
+    end
   end
 
   def new_log(time_ran, date_ran)
