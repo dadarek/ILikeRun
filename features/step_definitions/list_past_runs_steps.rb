@@ -6,10 +6,6 @@ Given /I visit the enter-run-log screen/ do
   visit new_run_log_path
 end
 
-When /I click on history/ do
-  click_link "History"
-end
-
 Then /I should be on the history page/ do
   current_path.should == run_logs_path
 end

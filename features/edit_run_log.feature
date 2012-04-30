@@ -23,7 +23,7 @@ Feature: Editing run logs
     And I click on edit next to the first run log 
     When I enter 556 minutes for my time ran
     And I enter "2001-02-28" for my date ran
-    And I click the save button
+    And I click the "Save" button
     Then I should have the following run logs
       | date_ran | time_ran |
       | 2001-02-28 | 556 |

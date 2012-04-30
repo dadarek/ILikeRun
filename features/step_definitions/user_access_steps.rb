@@ -19,14 +19,6 @@ When /I fill in "(.*?)" for "(.*?)"/ do |value, field|
   fill_in "user[#{field}]", with: value
 end
 
-When /I click the "(.*?)" button/ do |name|
-  click_button name
-end
-
-When /I click on "(.*?)"/ do |name|
-  click_link name
-end
-
 Then /I should be logged in/ do
   page.should have_selector ".welcome-text"
 end

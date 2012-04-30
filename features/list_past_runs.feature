@@ -26,6 +26,6 @@ Feature: List past runs
   Scenario: Navigating to runs
     Given I am logged in
     And I visit the enter-run-log screen 
-    When I click on history
+    When I click on "History"
     Then I should be on the history page
 

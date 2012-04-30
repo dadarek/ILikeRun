@@ -10,10 +10,6 @@ When /I enter "(.+)" for my date ran/ do |date|
   fill_in "run_log[date_ran]", with: date
 end
 
-When /I click the save button/ do
-  click_button "Save"
-end
-
 Then /I should see a success message/ do
   page.should have_selector ".notice"
 end
