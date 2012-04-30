@@ -140,8 +140,28 @@ describe RunLogsController do
 
   end
 
+  describe "#update" do
+    it "updates the date and time ran" do
+      log = new_log(15, Date.today - 1.days)
+      params = {id: log.id, 
+        date_ran: Date.today - 3.days, 
+        time_ran: 5 }
+
+      post :update, run_log: params, id: log.id
+
+      log.reload
+
+      log.time_ran.should == 5
+      log.date_ran.should == Date.today - 3.days
+    end
+
+    pending "It redirects"
+    pending "it reloads and sets @run_log"
+    pending "it doesn't crash"
+  end
+
   def new_log(time_ran, date_ran)
-    result = RunLog.create!(time_ran: 20, date_ran: date_ran, user_id: @user.id)
+    result = RunLog.create!(time_ran: time_ran, date_ran: date_ran, user_id: @user.id)
     result.save
     result
   end
