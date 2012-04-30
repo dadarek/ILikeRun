@@ -31,8 +31,8 @@ class RunLogsController < ApplicationController
   end
 
   def edit
-    log = RunLog.find_by_id params[:id]
-    if log.nil?
+    @run_log = RunLog.find_by_id params[:id]
+    if @run_log.nil?
       redirect_to :run_logs
     else
       render :new

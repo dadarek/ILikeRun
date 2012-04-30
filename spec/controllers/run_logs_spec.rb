@@ -131,6 +131,13 @@ describe RunLogsController do
     it "redirects to index on invalid view" do
       (get :edit, id: 0).should redirect_to :run_logs
     end
+    
+    it "assigns the correct log to @run_log" do
+      log = new_log(10, Date.today)
+      get :edit, id: log
+      assigns[:run_log].should == log
+    end
+
   end
 
   def new_log(time_ran, date_ran)
