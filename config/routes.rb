@@ -12,6 +12,8 @@ ILikeRun::Application.routes.draw do
   resources :schedules, only: [:index, :create]
   match '/schedules' => 'schedules#destroy', via: :delete
 
+  match '/api' => 'api#default', via: :post
+
   root to: 'users#login'
 
   # Sample of regular route:

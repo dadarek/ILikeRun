@@ -32,5 +32,9 @@ describe "route tests" do
     { get: "/" }.should route_to("users#login")
   end
 
+  it "routes api to api controller" do
+    { post: "/api" }.should route_to("api#default")
+  end
+
 end
 
