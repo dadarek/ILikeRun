@@ -124,7 +124,12 @@ describe RunLogsController do
 
   describe "#edit" do
     it "renders the new view" do
-      (get :edit, id: 0).should render_template :new
+      log = new_log(10, Date.today)
+      (get :edit, id: log).should render_template :new
+    end
+
+    it "redirects to index on invalid view" do
+      (get :edit, id: 0).should redirect_to :run_logs
     end
   end
 
