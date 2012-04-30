@@ -124,7 +124,7 @@ describe RunLogsController do
 
   describe "#edit" do
     it "renders the new view" do
-      log = new_log(10, Date.today)
+      log = new_log
       (get :edit, id: log).should render_template :new
     end
 
@@ -133,7 +133,7 @@ describe RunLogsController do
     end
     
     it "assigns the correct log to @run_log" do
-      log = new_log(10, Date.today)
+      log = new_log
       get :edit, id: log
       assigns[:run_log].should == log
     end
@@ -142,7 +142,7 @@ describe RunLogsController do
 
   describe "#update" do
     it "updates the date and time ran" do
-      log = new_log(15, Date.today - 1.days)
+      log = new_log
       params = {id: log.id, 
         date_ran: Date.today - 3.days, 
         time_ran: 5 }
@@ -160,7 +160,7 @@ describe RunLogsController do
     pending "it doesn't crash"
   end
 
-  def new_log(time_ran, date_ran)
+  def new_log(time_ran = 10, date_ran = Date.today)
     result = RunLog.create!(time_ran: time_ran, date_ran: date_ran, user_id: @user.id)
     result.save
     result
