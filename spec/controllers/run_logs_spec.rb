@@ -165,8 +165,13 @@ describe RunLogsController do
       (post :update, id: 0).should redirect_to :run_logs
     end
 
+    it "sets errors on bad params" do
+      log = new_log
+      post :update, run_log: {date_ran: nil, time_ran: nil}, id: log.id
+      flash[:alert].should_not be_nil
+    end
+
     pending "it reloads and sets @run_log"
-    pending "it doesn't crash"
   end
 
   def new_log(time_ran = 10, date_ran = Date.today)
