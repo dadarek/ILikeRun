@@ -143,16 +143,16 @@ describe RunLogsController do
   describe "#update" do
     it "updates the date and time ran" do
       log = new_log
-      params = {id: log.id, 
-        date_ran: Date.today - 3.days, 
-        time_ran: 5 }
+      new_date = Date.today - 3.days
+      new_time = 5
 
+      params = { date_ran: new_date, time_ran: new_time }
       post :update, run_log: params, id: log.id
 
       log.reload
 
-      log.time_ran.should == 5
-      log.date_ran.should == Date.today - 3.days
+      log.time_ran.should == new_time
+      log.date_ran.should == new_date
     end
 
     pending "It redirects"
