@@ -177,7 +177,9 @@ describe RunLogsController do
       assigns[:run_log].should == @log
     end
 
-    pending "it renders new on bad params"
+    it "renders new on bad params" do
+      (post :update, run_log: {date_ran: nil, time_ran: nil}, id: @log.id).should render_template :new
+    end
   end
 
   def new_log(time_ran = 10, date_ran = Date.today)
