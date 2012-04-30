@@ -161,7 +161,10 @@ describe RunLogsController do
       (post :update, run_log: params, id: log.id).should redirect_to :run_logs
     end
 
-    pending "It redirects"
+    it "handles invalid id" do
+      (post :update, id: 0).should redirect_to :run_logs
+    end
+
     pending "it reloads and sets @run_log"
     pending "it doesn't crash"
   end

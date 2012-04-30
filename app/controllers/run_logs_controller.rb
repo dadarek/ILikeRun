@@ -41,7 +41,10 @@ class RunLogsController < ApplicationController
 
   def update
     log = RunLog.find_by_id params[:id]
-    log.update_attributes! params[:run_log]
+    if log.nil?
+    else
+      log.update_attributes! params[:run_log]
+    end
     redirect_to :run_logs
   end
 
