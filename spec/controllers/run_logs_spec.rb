@@ -145,40 +145,48 @@ describe RunLogsController do
       @log = new_log
     end
 
-    it "updates the date and time ran" do
-      new_date = Date.today - 3.days
-      new_time = 5
+    context "A valid update" do
+      it "updates the date and time ran" do
+        new_date = Date.today - 3.days
+        new_time = 5
 
-      params = { date_ran: new_date, time_ran: new_time }
-      post :update, run_log: params, id: @log.id
+        params = { date_ran: new_date, time_ran: new_time }
+        post :update, run_log: params, id: @log.id
 
-      @log.reload
+        @log.reload
 
-      @log.time_ran.should == new_time
-      @log.date_ran.should == new_date
+        @log.time_ran.should == new_time
+        @log.date_ran.should == new_date
+      end
+
+      it "redirects to index" do
+        params = { date_ran: @log.date_ran, time_ran: @log.time_ran }
+        (post :update, run_log: params, id: @log.id).should redirect_to :run_logs
+      end
     end
 
-    it "redirects to index" do
-      params = { date_ran: @log.date_ran, time_ran: @log.time_ran }
-      (post :update, run_log: params, id: @log.id).should redirect_to :run_logs
-    end
+    context "Invalid updates" do
+      def dummy_post
+        post :update, run_log: {date_ran: nil, time_ran: nil}, id: @log.id
+      end
 
-    it "handles invalid id" do
-      (post :update, id: 0).should redirect_to :run_logs
-    end
+      it "handles invalid id" do
+        (post :update, id: 0).should redirect_to :run_logs
+      end
 
-    it "sets errors on bad params" do
-      post :update, run_log: {date_ran: nil, time_ran: nil}, id: @log.id
-      flash[:alert].should_not be_nil
-    end
+      it "sets errors on bad params" do
+        dummy_post
+        flash[:alert].should_not be_nil
+      end
 
-    it "it sets @run_log on bad params" do
-      post :update, run_log: {date_ran: nil, time_ran: nil}, id: @log.id
-      assigns[:run_log].should == @log
-    end
+      it "it sets @run_log on bad params" do
+        dummy_post
+        assigns[:run_log].should == @log
+      end
 
-    it "renders new on bad params" do
-      (post :update, run_log: {date_ran: nil, time_ran: nil}, id: @log.id).should render_template :new
+      it "renders new on bad params" do
+        dummy_post.should render_template :new
+      end
     end
   end
 
