@@ -108,7 +108,7 @@ describe RunLogsController do
 
   describe "#destroy" do
     it "deletes posted log" do
-      log = new_log(15, Date.today)
+      log = new_log
       delete :destroy, id: log
       RunLog.find_by_id(log.id).should be_nil
     end
