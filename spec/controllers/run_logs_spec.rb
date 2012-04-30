@@ -141,24 +141,26 @@ describe RunLogsController do
   end
 
   describe "#update" do
+    before :each do
+      @log = new_log
+    end
+
     it "updates the date and time ran" do
-      log = new_log
       new_date = Date.today - 3.days
       new_time = 5
 
       params = { date_ran: new_date, time_ran: new_time }
-      post :update, run_log: params, id: log.id
+      post :update, run_log: params, id: @log.id
 
-      log.reload
+      @log.reload
 
-      log.time_ran.should == new_time
-      log.date_ran.should == new_date
+      @log.time_ran.should == new_time
+      @log.date_ran.should == new_date
     end
 
     it "redirects to index" do
-      log = new_log
-      params = { date_ran: log.date_ran, time_ran: log.time_ran }
-      (post :update, run_log: params, id: log.id).should redirect_to :run_logs
+      params = { date_ran: @log.date_ran, time_ran: @log.time_ran }
+      (post :update, run_log: params, id: @log.id).should redirect_to :run_logs
     end
 
     it "handles invalid id" do
@@ -166,8 +168,7 @@ describe RunLogsController do
     end
 
     it "sets errors on bad params" do
-      log = new_log
-      post :update, run_log: {date_ran: nil, time_ran: nil}, id: log.id
+      post :update, run_log: {date_ran: nil, time_ran: nil}, id: @log.id
       flash[:alert].should_not be_nil
     end
 
