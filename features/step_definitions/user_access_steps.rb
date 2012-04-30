@@ -10,10 +10,6 @@ Given /I am logged in/ do
   step %|I click the "Login" button|
 end
 
-When /I visit the login screen/ do
-  visit users_login_path
-end
-
 When /I fill in "(.*?)" for "(.*?)"/ do |value, field|
   field = "user_name" if field == "username"
   fill_in "user[#{field}]", with: value

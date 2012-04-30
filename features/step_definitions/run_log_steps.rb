@@ -1,7 +1,3 @@
-Given /I visit the Run log screen/ do
-  visit new_run_log_path
-end
-
 When /I enter (\-?\d+) minutes for my time ran/ do |minutes|
   fill_in "run_log[time_ran]", with: minutes
 end

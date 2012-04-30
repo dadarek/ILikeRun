@@ -1,11 +1,3 @@
-Given /I visit the run log history screen/ do
-  visit run_logs_path
-end
-
-Given /I visit the enter-run-log screen/ do
-  visit new_run_log_path
-end
-
 Then /I should be on the history page/ do
   current_path.should == run_logs_path
 end

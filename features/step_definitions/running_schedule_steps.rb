@@ -6,10 +6,6 @@ Given /My schedule has the following days/ do |table|
   @user.schedule.save!
 end 
 
-Given /I visit the schedule screen/ do
-  visit schedules_path
-end
-
 When /I click on the image for "(.+)"/ do |day|
   page.find(:css, "[data-day-of-week='#{day}']" ).click
 end
