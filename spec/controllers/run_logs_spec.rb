@@ -112,6 +112,10 @@ describe RunLogsController do
       delete :destroy, id: log
       RunLog.find_by_id(log.id).should be_nil
     end
+
+    it "doesn't crash on invalid id" do
+      delete :destroy, id: -1
+    end
   end
 
   def new_log(time_ran, date_ran)

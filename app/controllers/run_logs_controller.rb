@@ -25,7 +25,7 @@ class RunLogsController < ApplicationController
 
   def destroy
     log = RunLog.find_by_id params[:id]
-    log.destroy
+    log.destroy if not log.nil?
 
     render nothing: true
   end
