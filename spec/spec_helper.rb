@@ -44,3 +44,4 @@ end
 def stub_views_current_user user
   @view.stub(:current_user).and_return(user)
 end
+
