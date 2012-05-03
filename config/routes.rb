@@ -9,6 +9,7 @@ ILikeRun::Application.routes.draw do
   match '/users/login' => 'users#login', via: :get
   match '/users/login' => 'users#authenticate', via: :post, as: "authenticate"
 
+  resources :charts, only: [:index]
   resources :schedules, only: [:index, :create]
   match '/schedules' => 'schedules#destroy', via: :delete
 

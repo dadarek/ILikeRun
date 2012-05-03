@@ -1,4 +1,5 @@
 <% if current_user %>
+  <%= link_to "Charts", :charts, class: 'button' %>
   <%= link_to "Schedule", :schedules, class: 'button' %>
   <%= link_to "History", :run_logs, class: 'button' %>
   <%= link_to "Logout", :logout, class: 'button' %>

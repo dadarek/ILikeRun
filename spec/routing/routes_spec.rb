@@ -36,5 +36,9 @@ describe "route tests" do
     {get: "/api/user_name"}.should route_to( controller: "api", action: "get_user_logs", user_name: "user_name" )
   end
 
+  it "routes charts to charts controller" do
+    {get: "/charts"}.should route_to "charts#index"
+  end
+
 end
 
