@@ -1,8 +1,11 @@
 class ChartsController < ApplicationController
 
   def index
-    two_weeks_ago = Date.today - 2.weeks
-    @run_logs = current_user.run_logs.where('date_ran > ?', two_weeks_ago)
+    user_logs = current_user.run_logs
+    two_week_logs = user_logs.where('date_ran > ?', Date.today - 2.weeks)
+    ordered_logs = two_week_logs.order("date_ran desc")
+
+    @run_logs = ordered_logs
     render :index
   end
 
