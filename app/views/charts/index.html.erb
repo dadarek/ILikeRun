@@ -1,13 +1,11 @@
 
 <h2>Last 2 Weeks</h2>
 
-<%= @run_logs.to_json(only: [:date_ran, :time_ran]) %>
-
 <script type="text/javascript" charset="utf-8">
   $(function() {
-      var twoWeeksAgo = new Date();
-      twoWeeksAgo.setDate( (new Date()).getDate() - 13 );
-      var pointStart = Date.UTC(twoWeeksAgo.getUTCFullYear(), twoWeeksAgo.getUTCMonth(), twoWeeksAgo.getUTCDate());
+    var twoWeeksAgo = new Date();
+    twoWeeksAgo.setDate( (new Date()).getDate() - 13 );
+    var pointStart = Date.UTC(twoWeeksAgo.getUTCFullYear(), twoWeeksAgo.getUTCMonth(), twoWeeksAgo.getUTCDate());
 
     new Highcharts.Chart({
       chart: {
@@ -23,6 +21,7 @@
         tickInterval: 24 * 3600 * 1000
       },
       yAxis: {
+        min: 0,
         title: {
           text: "Minutes Ran"
         }
@@ -30,7 +29,7 @@
       series: [{
         pointInterval: 24 * 3600 * 1000,
         pointStart: pointStart,
-        data: [1, 3, 8, 10, 6, 15, 30, 10, 13, 11, 14, 15, 16, 17],
+        data: [1, 3, 0, 10, 6, 15, 30, 10, 13, 11, 14, 15, 16, 17],
         name: null
       }],
       tooltip: {
