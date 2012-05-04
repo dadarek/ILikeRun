@@ -15,21 +15,18 @@ describe ChartsController do
     thirteen_days_ago = create_log Date.today - 13.days
     two_weeks_ago = create_log Date.today - 2.weeks
 
-    logs = [log1, log2, log3, thirteen_days_ago]
+    logs = [thirteen_days_ago, log3, log2, log1]
 
     get :index
     assigns(:run_logs).should == logs
   end
 
-  it 'returns logs ordered by date' do
-    log2 = create_log Date.today - 5.days
-    log3 = create_log Date.today - 1.week
-    log1 = create_log Date.today
+  it 'returns oldest logs first' do
+    yesterday = create_log Date.today - 1.days
+    today = create_log Date.today
+    two_days_ago = create_log Date.today - 2.days
 
-    thirteen_days_ago = create_log Date.today - 13.days
-    two_weeks_ago = create_log Date.today - 2.weeks
-
-    logs = [log1, log2, log3, thirteen_days_ago]
+    logs = [two_days_ago, yesterday, today]
 
     get :index
     assigns(:run_logs).should == logs
