@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
+gem 'httparty'
 
 group :test, :development do
   gem 'sqlite3'
