@@ -7,7 +7,7 @@ describe ChartsController do
     login @user
   end
 
-  it "sets logs to an array of last 2 weeks" do
+  it "ignores logs older than 2 weeks" do
     log1 = create_log Date.today
     log2 = create_log Date.today - 5.days
     log3 = create_log Date.today - 1.week
@@ -38,7 +38,6 @@ describe ChartsController do
     log3 = create_log Date.today - 1.week
 
     thirteen_days_ago = create_log Date.today - 13.days
-    two_weeks_ago = create_log Date.today - 2.weeks
 
     logs_url = create_logs_url [thirteen_days_ago, log3, log2, log1]
 
