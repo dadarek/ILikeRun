@@ -34,4 +34,6 @@ ILikeRun::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.charting_server = 'http://localhost:5678'
 end
