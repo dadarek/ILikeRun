@@ -6,7 +6,7 @@ class ChartsController < ApplicationController
     ordered_logs = two_week_logs.order("date_ran asc")
 
     run_logs = ordered_logs
-    logs_json = @run_logs.to_json( only: [:date_ran, :time_ran] )
+    logs_json = run_logs.to_json( only: [:date_ran, :time_ran] )
     logs_encoded = URI.encode logs_json
 
     server = Rails.configuration.charting_server

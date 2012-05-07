@@ -15,13 +15,7 @@ describe ChartsController do
     thirteen_days_ago = create_log Date.today - 13.days
     two_weeks_ago = create_log Date.today - 2.weeks
 
-    logs = [thirteen_days_ago, log3, log2, log1]
-    logs_json = logs.to_json( only: [:date_ran, :time_ran] )
-    logs_encoded = URI.encode logs_json
-
-    charting_server = Rails.configuration.charting_server
-
-    logs_url = charting_server + "/?" + logs_encoded
+    logs_url = create_logs_url [thirteen_days_ago, log3, log2, log1]
 
     get :index
     assigns(:logs_data_url).should == logs_url
@@ -32,14 +26,8 @@ describe ChartsController do
     today = create_log Date.today
     two_days_ago = create_log Date.today - 2.days
 
-    logs = [two_days_ago, yesterday, today]
+    logs_url = create_logs_url [two_days_ago, yesterday, today]
 
-    logs_json = logs.to_json( only: [:date_ran, :time_ran] )
-    logs_encoded = URI.encode logs_json
-
-    charting_server = Rails.configuration.charting_server
-
-    logs_url = charting_server + "/?" + logs_encoded
     get :index
     assigns(:logs_data_url).should == logs_url
   end
@@ -52,16 +40,19 @@ describe ChartsController do
     thirteen_days_ago = create_log Date.today - 13.days
     two_weeks_ago = create_log Date.today - 2.weeks
 
-    logs = [thirteen_days_ago, log3, log2, log1]
+    logs_url = create_logs_url [thirteen_days_ago, log3, log2, log1]
+
+    get :index
+    assigns(:logs_data_url).should == logs_url
+  end
+
+  def create_logs_url logs
     logs_json = logs.to_json( only: [:date_ran, :time_ran] )
     logs_encoded = URI.encode logs_json
 
     charting_server = Rails.configuration.charting_server
 
-    logs_url = charting_server + "/?" + logs_encoded
-
-    get :index
-    assigns(:logs_data_url).should == logs_url
+    charting_server + "/?" + logs_encoded
   end
 
   def create_log date_ran
