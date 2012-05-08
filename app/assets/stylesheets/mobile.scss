@@ -12,3 +12,23 @@ div.header {
   }
 }
 
+div.running-schedule {
+  width: 150px;
+  margin: 0 auto;
+
+  div {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #000000;
+  }
+
+  span {
+    display: block;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 5px 0;
+    margin-bottom: 10px;
+  }
+
+}
+
