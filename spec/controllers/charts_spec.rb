@@ -3,8 +3,6 @@ require 'spec_helper'
 describe ChartsController do
 
   before :each do
-    HTTParty.stub(:get)
-
     @user = create_user
     login @user
   end
@@ -17,34 +15,10 @@ describe ChartsController do
     thirteen_days_ago = create_log Date.today - 13.days
     two_weeks_ago = create_log Date.today - 2.weeks
 
-    logs_url = create_logs_url [thirteen_days_ago, log3, log2, log1]
+    logs_url = create_logs_url [log1, log2, log3, thirteen_days_ago]
 
+    HTTParty.should_receive(:get).with(logs_url)
     get :index
-    assigns(:logs_data_url).should == logs_url
-  end
-
-  it 'returns oldest logs first' do
-    yesterday = create_log Date.today - 1.days
-    today = create_log Date.today
-    two_days_ago = create_log Date.today - 2.days
-
-    logs_url = create_logs_url [two_days_ago, yesterday, today]
-
-    get :index
-    assigns(:logs_data_url).should == logs_url
-  end
-
-  it 'sets @logs_data_url to encoded logs' do
-    log1 = create_log Date.today
-    log2 = create_log Date.today - 5.days
-    log3 = create_log Date.today - 1.week
-
-    thirteen_days_ago = create_log Date.today - 13.days
-
-    logs_url = create_logs_url [thirteen_days_ago, log3, log2, log1]
-
-    get :index
-    assigns(:logs_data_url).should == logs_url
   end
 
   it 'redirects if error connecting to charting server' do
