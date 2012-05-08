@@ -1,67 +1,13 @@
 <h2>Running Schedule</h2>
 
 <div class="running-schedule">
-  <div>
-    <p>Monday</p>
+  <% Date::DAYNAMES.each{ |day| %>
     <div>
-      <input src="/assets/not-running.jpg" type="image" />
+      <p><%=day%></p>
+      <div>
+        <%= render partial: "day_of_week", locals: {day_of_week: day } %>
+      </div>
     </div>
-  </div>
-  <div>
-    <p>Tuesday</p>
-    <div>
-      <input src="/assets/not-running.jpg" type="image" />
-    </div>
-  </div>
-  <div>
-    <p>Wednesday</p>
-    <div>
-      <input src="/assets/not-running.jpg" type="image" />
-    </div>
-  </div>
-  <div>
-    <p>Thursday</p>
-    <div>
-      <input src="/assets/yes-running.jpg" type="image" />
-    </div>
-  </div>
-  <div>
-    <p>Friday</p>
-    <div>
-      <input src="/assets/yes-running.jpg" type="image" />
-    </div>
-  </div>
-  <div>
-    <p>Saturday</p>
-    <div>
-      <input src="/assets/not-running.jpg" type="image" />
-    </div>
-  </div>
-  <div>
-    <p>Sunday</p>
-    <div>
-      <input src="/assets/yes-running.jpg" type="image" />
-    </div>
-  </div>
+  <% } %>
 </div>
-
-<table>
-  <tr>
-
-  <% Date::DAYNAMES.each{ |day| %>
-    <th>
-      <%= day %>
-    </th>
-  <% } %>
-  
-  </tr><tr>
-
-  <% Date::DAYNAMES.each{ |day| %>
-    <td>
-      <%= render partial: "day_of_week", locals: {day_of_week: day } %>
-    </td>
-  <% } %>
-
-  </tr>
-</table>
 
