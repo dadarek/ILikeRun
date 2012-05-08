@@ -16,24 +16,16 @@ input[type=text], input[type=password] {
 div.container {
   margin: 5px auto;
   padding: 10px;
-  width: 900px;
+  max-width: 900px;
   border: 1px solid #000000;
 }
 
 div.header {
   border-bottom: 1px solid #000000;
-  padding-bottom: 20px;
 
   h1 {
-    float: left;
-    font-size: 36px;
     margin: 0;
     padding: 0;
-  }
-
-  a { 
-    float: right;
-    margin: 10px 20px 0 0;
   }
 }
 

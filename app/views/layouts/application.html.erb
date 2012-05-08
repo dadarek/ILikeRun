@@ -2,8 +2,11 @@
 <html>
 <head>
   <title>ILikeRun</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%=stylesheet_link_tag "application", :media => "all" %>
+  <%=stylesheet_link_tag "mobile", :media => "all and (max-width: 700px)" %>
+  <%=stylesheet_link_tag "non-mobile", :media => "all and (min-width: 700px)" %>
+  <%=stylesheet_link_tag    "application", :media => "all" %>
+  <%=javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
