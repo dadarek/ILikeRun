@@ -40,5 +40,9 @@ describe "route tests" do
     {get: "/charts"}.should route_to "charts#index"
   end
 
+  it "allows gets on charts unavailable" do
+    {get: "/charts/unavailable"}.should route_to "charts#unavailable"
+  end
+
 end
 
