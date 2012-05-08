@@ -10,7 +10,17 @@ class ChartsController < ApplicationController
     server = Rails.configuration.charting_server
 
     @logs_data_url = "#{server}/?#{json_encoded}"
-    render :index
+
+    begin
+      @chart_data_points = HTTParty.get "http://0.0.0.0:8858/x"
+    rescue
+      redirect_to action: "unavailable"
+    else
+      render :index
+    end
+  end
+
+  def unavailable
   end
 
 end

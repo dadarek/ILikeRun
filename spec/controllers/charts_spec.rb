@@ -3,6 +3,8 @@ require 'spec_helper'
 describe ChartsController do
 
   before :each do
+    HTTParty.stub(:get)
+
     @user = create_user
     login @user
   end
@@ -43,6 +45,17 @@ describe ChartsController do
 
     get :index
     assigns(:logs_data_url).should == logs_url
+  end
+
+  it 'redirects if error connecting to charting server' do
+    HTTParty.stub(:get).and_throw(:exception)
+    (get :index).should redirect_to(action: "unavailable")
+  end
+
+  it 'assigns chart_data_points to return value of url' do
+    HTTParty.stub(:get).and_return('meow meow meow')
+    get :index
+    assigns(:chart_data_points).should == 'meow meow meow'
   end
 
   def create_logs_url logs
