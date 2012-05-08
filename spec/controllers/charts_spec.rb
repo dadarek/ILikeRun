@@ -47,5 +47,12 @@ describe ChartsController do
     end
   end
 
+  context 'unavailable' do
+    it 'sets an error in flash' do
+      get :unavailable
+      flash[:alert].should_not be_nil
+    end
+  end
+
 end
 

@@ -20,6 +20,7 @@ class ChartsController < ApplicationController
   end
 
   def unavailable
+    flash[:alert] = 'An error occured while contacting the charting server.'
   end
 
 end
