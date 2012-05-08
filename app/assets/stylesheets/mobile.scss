@@ -18,16 +18,18 @@ div.running-schedule {
 
   div {
     margin-bottom: 10px;
-    padding-bottom: 10px;
     border: 1px solid #000000;
+    div {
+      border: 0;
+      padding-top: 15px;
+    }
   }
 
-  span {
-    display: block;
+  p {
     background-color: #000000;
     color: #FFFFFF;
     padding: 5px 0;
-    margin-bottom: 10px;
+    margin: 0;
   }
 
 }
