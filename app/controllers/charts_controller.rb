@@ -13,14 +13,11 @@ class ChartsController < ApplicationController
     begin
       @chart_data_points = HTTParty.get logs_data_url
     rescue
+      flash[:alert] = 'An error occured while contacting the charting server.'
       redirect_to action: "unavailable"
     else
       render :index
     end
-  end
-
-  def unavailable
-    flash[:alert] = 'An error occured while contacting the charting server.'
   end
 
 end

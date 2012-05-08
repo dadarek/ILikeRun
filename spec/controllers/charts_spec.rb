@@ -7,7 +7,7 @@ describe ChartsController do
     login @user
   end
 
-  context 'index' do
+  context 'charting server running' do
     it "ignores logs older than 2 weeks" do
       log1 = create_log Date.today
       log2 = create_log Date.today - 5.days
@@ -20,11 +20,6 @@ describe ChartsController do
 
       HTTParty.should_receive(:get).with(logs_url)
       get :index
-    end
-
-    it 'redirects if error connecting to charting server' do
-      HTTParty.stub(:get).and_throw(:exception)
-      (get :index).should redirect_to(action: "unavailable")
     end
 
     it 'assigns chart_data_points to return value of url' do
@@ -47,11 +42,24 @@ describe ChartsController do
     end
   end
 
-  context 'unavailable' do
+  context 'charting server down' do
+
+    before :each do
+      HTTParty.stub(:get).and_throw(:exception)
+    end
+
+    it 'redirects if error connecting to charting server' do
+      (get :index).should redirect_to(action: "unavailable")
+    end
+
     it 'sets an error in flash' do
-      get :unavailable
+      get :index
       flash[:alert].should_not be_nil
     end
+  end
+
+  it 'has a action unavailable' do
+    (get :unavailable).should render_template('unavailable')
   end
 
 end
