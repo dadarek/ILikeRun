@@ -3,7 +3,7 @@
 <script type="text/javascript" charset="utf-8">
   $(function() {
 
-    var data = <%=HTTParty.get(@logs_data_url)%>;
+    var data = <%=@chart_data_points%>;
 
     var twoWeeksAgo = new Date();
     twoWeeksAgo.setDate( (new Date()).getDate() - 13 );
