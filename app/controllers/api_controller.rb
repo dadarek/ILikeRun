@@ -19,20 +19,38 @@ class ApiController < ApplicationController
   end
 
   def create
-    user_name = params[:user_name]
+    try_create_log
+    if @error_message.nil?
+      render nothing: true
+    else
+      render text: @error_message
+    end
+  end
 
+  private
+
+  def try_create_log
+    user = find_user
+    return if user.nil?
+
+    log = create_log user
+    if not log.save
+      @error_message = "Invalid date."
+    end
+  end
+
+  def find_user
+    user_name = params[:user_name]
     user = User.find_by_user_name user_name
     if user.nil?
-      render text: "User with user name #{user_name} not found."
-    else
-      attributes = params[:run_log]
-      attributes[:user_id] = user.id
-      log = RunLog.new(attributes)
-      if log.save
-        render nothing: true
-      else
-        render text: "Invalid date."
-      end
+      @error_message = "User with user name #{user_name} not found."
     end
+    user
+  end
+
+  def create_log(user)
+    attributes = params[:run_log]
+    attributes[:user_id] = user.id
+    RunLog.new attributes
   end
 end
