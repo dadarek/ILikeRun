@@ -13,12 +13,8 @@ describe ApiController do
       response.body.should == [].to_json
     end
 
-    it "does not crash on invalid delete id" do
-      get :delete, id: 0
-    end
-
     it "renders record not found message on invalid delete" do
-      get :delete, id: 0
+      delete :destroy, id: 0
       response.body.should =~ /not found/
     end
 
@@ -44,12 +40,12 @@ describe ApiController do
     end
 
     it "renders a success message on good delete" do
-      get :delete, id: @log1.id
+      delete :destroy, id: @log1.id
       response.body.should =~ /Success/
     end
 
     it "deletes log with given id" do
-      get :delete, id: @log1.id
+      delete :destroy, id: @log1.id
       RunLog.find_by_id(@log1.id).should be_nil
     end
 
