@@ -10,11 +10,11 @@ class ApiController < ApplicationController
 
   def destroy
     log = RunLog.find_by_id params[:id]
-    if not log.nil?
+    if log.nil?
+      render text: "Log with id #{params[:id]} was not found."
+    else
       log.destroy
       render text: "Success"
-    else
-      render text: "Log with id #{params[:id]} was not found."
     end
   end
 end
