@@ -19,9 +19,9 @@ describe ApiController do
 
     before :each do
       user = create_user("Bob")
-      log1 = RunLog.create!(time_ran: 50, date_ran: Date.today, user_id: user.id)
-      log2 = RunLog.create!(time_ran: 24, date_ran: Date.today - 3.days, user_id: user.id)
-      @logs = [log1, log2]
+      @log1 = RunLog.create!(time_ran: 50, date_ran: Date.today, user_id: user.id)
+      @log2 = RunLog.create!(time_ran: 24, date_ran: Date.today - 3.days, user_id: user.id)
+      @logs = [@log1, @log2]
     end
     
     it "sends back given users logs" do
@@ -32,6 +32,11 @@ describe ApiController do
     it "ignores case" do
       get :get_user_logs, user_name: "bob"
       response.body.should == logs_to_json
+    end
+
+    it "deletes log with given id" do
+      get :delete, id: @log1.id
+      RunLog.find_by_id(@log1.id).should be_nil
     end
 
     def logs_to_json
