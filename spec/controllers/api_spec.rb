@@ -37,6 +37,7 @@ describe ApiController do
     def logs_to_json
       @logs.to_json( only: [:id, :date_ran, :time_ran])
     end
+
   end
 
 end
