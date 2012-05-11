@@ -1,5 +1,4 @@
 class ApiController < ApplicationController
-
   skip_before_filter :ensure_is_logged_in
 
   def get_user_logs
@@ -18,5 +17,4 @@ class ApiController < ApplicationController
       render text: "Log with id #{params[:id]} was not found."
     end
   end
-
 end
