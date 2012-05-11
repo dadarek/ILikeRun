@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe ApiController do
-
   context "Miscellaneous" do
-
     it "allows unauthenticated users" do
       (get :get_user_logs).should_not be_redirect
     end
@@ -17,11 +15,9 @@ describe ApiController do
       delete :destroy, id: 0
       response.body.should =~ /not found/
     end
-
   end
 
   context "Valid requests" do
-
     before :each do
       user = create_user("Bob")
       @log1 = RunLog.create!(time_ran: 50, date_ran: Date.today, user_id: user.id)
@@ -52,7 +48,5 @@ describe ApiController do
     def logs_to_json
       @logs.to_json( only: [:id, :date_ran, :time_ran])
     end
-
   end
-
 end
