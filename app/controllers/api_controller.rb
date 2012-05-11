@@ -21,7 +21,7 @@ class ApiController < ApplicationController
   def create
     try_create_log
     if @error_message.nil?
-      render nothing: true
+      render text: "Success"
     else
       render text: @error_message
     end

@@ -88,6 +88,18 @@ describe ApiController do
       @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
     end
 
+    it "displays a success message on successful add" do
+      el_date = Date.today
+      params = {
+        time_ran: 88,
+        date_ran: el_date
+      }
+
+      post :create, user_name: @user.user_name, run_log: params
+      @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
+      response.body.should =~ /Success/
+    end
+
     def logs_to_json
       @logs.to_json( only: [:id, :date_ran, :time_ran])
     end
