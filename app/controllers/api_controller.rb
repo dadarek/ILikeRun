@@ -12,7 +12,7 @@ class ApiController < ApplicationController
   def delete
     log = RunLog.find_by_id params[:id]
     log.destroy if not log.nil?
-    render nothing: true
+    render text: "Success"
   end
 
 end

@@ -38,6 +38,11 @@ describe ApiController do
       response.body.should == logs_to_json
     end
 
+    it "renders a success message on good delete" do
+      get :delete, id: @log1.id
+      response.body.should =~ /Success/
+    end
+
     it "deletes log with given id" do
       get :delete, id: @log1.id
       RunLog.find_by_id(@log1.id).should be_nil
