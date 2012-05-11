@@ -15,7 +15,7 @@ ILikeRun::Application.routes.draw do
   resources :schedules, only: [:index, :create]
   match '/schedules' => 'schedules#destroy', via: :delete
 
-  resources :api, only: [:destroy]
+  resources :api, only: [:destroy, :create]
   match '/api/:user_name' => 'api#get_user_logs', via: :get
 
   root to: 'users#login'
