@@ -34,7 +34,7 @@ describe ApiController do
       }
 
       post :create, user_name: user.user_name, run_log: params
-      response.body.should =~ /Invalid date ran/
+      response.body.should =~ /Date ran/
     end
 
     it "provides error message on invalid time ran when adding" do
@@ -45,7 +45,7 @@ describe ApiController do
       }
 
       post :create, user_name: user.user_name, run_log: params
-      response.body.should =~ /Invalid time ran/
+      response.body.should =~ /Time ran/
     end
   end
 

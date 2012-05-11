@@ -35,8 +35,7 @@ class ApiController < ApplicationController
 
     log = create_log user
     if !log.save
-      @error_message = "Invalid date ran." unless log.errors[:date_ran].empty?
-      @error_message = "Invalid time ran." unless log.errors[:time_ran].empty?
+      @error_message = log.errors.full_messages
     end
   end
 
