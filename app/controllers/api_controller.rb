@@ -17,4 +17,12 @@ class ApiController < ApplicationController
       render text: "Success"
     end
   end
+
+  def create
+    user = User.find_by_user_name(params[:user_name])
+    attributes = params[:run_log]
+    attributes[:user_id] = user.id
+    RunLog.create!(attributes)
+    render nothing: true
+  end
 end

@@ -19,9 +19,9 @@ describe ApiController do
 
   context "Valid requests" do
     before :each do
-      user = create_user("Bob")
-      @log1 = RunLog.create!(time_ran: 50, date_ran: Date.today, user_id: user.id)
-      @log2 = RunLog.create!(time_ran: 24, date_ran: Date.today - 3.days, user_id: user.id)
+      @user = create_user("Bob")
+      @log1 = RunLog.create!(time_ran: 50, date_ran: Date.today, user_id: @user.id)
+      @log2 = RunLog.create!(time_ran: 24, date_ran: Date.today - 3.days, user_id: @user.id)
       @logs = [@log1, @log2]
     end
     
@@ -43,6 +43,18 @@ describe ApiController do
     it "deletes log with given id" do
       delete :destroy, id: @log1.id
       RunLog.find_by_id(@log1.id).should be_nil
+    end
+
+    it "adds logs to specified user" do
+      el_date = Date.today
+      params = {
+        time_ran: 88,
+        date_ran: el_date
+      }
+
+      post :create, user_name: @user.user_name, run_log: params
+      @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
+
     end
 
     def logs_to_json
