@@ -25,6 +25,17 @@ describe ApiController do
       post :create, user_name: 'invalid_user_name', run_log: params
       response.body.should =~ /not found/
     end
+
+    it "provides error message on invalid date when adding" do
+      user = create_user
+      params = {
+        time_ran: 88,
+        date_ran: Date.today + 1
+      }
+
+      post :create, user_name: user.user_name, run_log: params
+      response.body.should =~ /Invalid date/
+    end
   end
 
   context "Valid requests" do

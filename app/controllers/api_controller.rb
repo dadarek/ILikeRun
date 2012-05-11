@@ -27,8 +27,12 @@ class ApiController < ApplicationController
     else
       attributes = params[:run_log]
       attributes[:user_id] = user.id
-      RunLog.create!(attributes)
-      render nothing: true
+      log = RunLog.new(attributes)
+      if log.save
+        render nothing: true
+      else
+        render text: "Invalid date."
+      end
     end
   end
 end
