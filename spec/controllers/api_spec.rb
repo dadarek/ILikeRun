@@ -14,7 +14,12 @@ describe ApiController do
     end
 
     it "does not crash on invalid delete id" do
-      (get :delete, id: 0)
+      get :delete, id: 0
+    end
+
+    it "renders record not found message on invalid delete" do
+      get :delete, id: 0
+      response.body.should =~ /not found/
     end
 
   end
