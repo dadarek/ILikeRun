@@ -20,8 +20,8 @@ describe ApiController do
   context "Valid requests" do
     before :each do
       @user = create_user("Bob")
-      @log1 = RunLog.create!(time_ran: 50, date_ran: Date.today, user_id: @user.id)
-      @log2 = RunLog.create!(time_ran: 24, date_ran: Date.today - 3.days, user_id: @user.id)
+      @log1 = create_run_log(Date.today, 50)
+      @log2 = create_run_log(Date.today - 3.days, 24)
       @logs = [@log1, @log2]
     end
     

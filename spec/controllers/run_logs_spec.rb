@@ -71,9 +71,9 @@ describe RunLogsController do
 
   describe "#index" do
     before :each do
-      @yesterday = new_log(40, Date.today - 1.day)
-      @today = new_log(20, Date.today)
-      @three_days_ago = new_log(30, Date.today - 3.day)
+      @yesterday = create_run_log(Date.today - 1.day, 40)
+      @today = create_run_log(Date.today, 20)
+      @three_days_ago = create_run_log(Date.today - 3.day, 30)
     end
 
     it "initializes @run_logs to all instances of run_logs in the database." do
@@ -91,7 +91,7 @@ describe RunLogsController do
 
     it "only returns logged-in users logs" do
       other_user = User.create!( user_name: "John Smith", password: "apple" )
-      log = RunLog.create!(time_ran: 55, date_ran: Date.today, user_id: other_user.id)
+      log = create_run_log(Date.today, 55, other_user)
 
       get :index
       logs = assigns(:run_logs)
@@ -108,7 +108,7 @@ describe RunLogsController do
 
   describe "#destroy" do
     it "deletes posted log" do
-      log = new_log
+      log = create_run_log
       delete :destroy, id: log
       RunLog.find_by_id(log.id).should be_nil
     end
@@ -124,7 +124,7 @@ describe RunLogsController do
 
   describe "#edit" do
     it "renders the new view" do
-      log = new_log
+      log = create_run_log
       (get :edit, id: log).should render_template :new
     end
 
@@ -133,7 +133,7 @@ describe RunLogsController do
     end
     
     it "assigns the correct log to @run_log" do
-      log = new_log
+      log = create_run_log
       get :edit, id: log
       assigns[:run_log].should == log
     end
@@ -142,7 +142,7 @@ describe RunLogsController do
 
   describe "#update" do
     before :each do
-      @log = new_log
+      @log = create_run_log
     end
 
     context "A valid update" do
@@ -188,9 +188,5 @@ describe RunLogsController do
         post_update.should render_template :new
       end
     end
-  end
-
-  def new_log(time_ran = 10, date_ran = Date.today)
-     RunLog.create!(time_ran: time_ran, date_ran: date_ran, user_id: @user.id)
   end
 end

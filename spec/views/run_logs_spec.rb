@@ -4,8 +4,8 @@ describe "run_logs/index" do
 
   before :each do
     user = create_user
-    @log1 = RunLog.create!(date_ran: Date.today - 1.day, time_ran: 30, user_id: user.id)
-    @log2 = RunLog.create!(date_ran: Date.today - 3.day, time_ran: 60, user_id: user.id)
+    @log1 = create_run_log(Date.today - 1.day, 30, user)
+    @log2 = create_run_log(Date.today - 3.day, 60, user)
 
     assign(:run_logs, [@log1, @log2])
   end

@@ -9,12 +9,12 @@ describe ChartsController do
 
   context 'charting server running' do
     it "ignores logs older than 2 weeks" do
-      log1 = create_log Date.today
-      log2 = create_log Date.today - 5.days
-      log3 = create_log Date.today - 1.week
+      log1 = create_run_log(Date.today)
+      log2 = create_run_log(Date.today - 5.days)
+      log3 = create_run_log(Date.today - 1.week)
 
-      thirteen_days_ago = create_log Date.today - 13.days
-      two_weeks_ago = create_log Date.today - 2.weeks
+      thirteen_days_ago = create_run_log(Date.today - 13.days)
+      two_weeks_ago = create_run_log(Date.today - 2.weeks)
 
       logs_url = create_logs_url [log1, log2, log3, thirteen_days_ago]
 
@@ -35,10 +35,6 @@ describe ChartsController do
       charting_server = Rails.configuration.charting_server
 
       charting_server + "/?" + logs_encoded
-    end
-
-    def create_log date_ran
-      RunLog.create!(date_ran: date_ran, time_ran: 1, user_id: @user.id)
     end
   end
 

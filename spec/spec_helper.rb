@@ -41,6 +41,10 @@ def login user
   @controller.stub(:session).and_return(session)
 end
 
+def create_run_log(date_ran = Date.today, time_ran = 30, user = @user)
+  RunLog.create!(date_ran: date_ran, time_ran: time_ran, user_id: user.id)
+end
+
 def stub_views_current_user user
   @view.stub(:current_user).and_return(user)
 end
