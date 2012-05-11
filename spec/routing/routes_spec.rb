@@ -34,7 +34,7 @@ describe "route tests" do
 
   it "routes api to api controller" do
     {get: "/api/user_name"}.should route_to( controller: "api", action: "get_user_logs", user_name: "user_name" )
-    {get: "/api/delete/5"}.should route_to(controller: "api", action: "delete", id: "5")
+    {delete: "/api/5"}.should route_to(controller: "api", action: "destroy", id: "5")
   end
 
   it "routes charts to charts controller" do
