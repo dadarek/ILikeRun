@@ -51,19 +51,19 @@ describe ApiController do
 
   context "Valid requests" do
     before :each do
-      @user = create_user("Bob")
+      @user = create_user
       @log1 = create_run_log(Date.today, 50)
       @log2 = create_run_log(Date.today - 3.days, 24)
       @logs = [@log1, @log2]
     end
     
     it "sends back given users logs" do
-      get :get_user_logs, user_name: "Bob"
+      get :get_user_logs, user_name: @user.user_name
       response.body.should == logs_to_json
     end
 
     it "ignores case" do
-      get :get_user_logs, user_name: "bob"
+      get :get_user_logs, user_name: @user.user_name
       response.body.should == logs_to_json
     end
 
