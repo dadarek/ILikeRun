@@ -26,7 +26,7 @@ describe ApiController do
       response.body.should =~ /not found/
     end
 
-    it "provides error message on invalid date when adding" do
+    it "provides error message on invalid date ran when adding" do
       user = create_user
       params = {
         time_ran: 88,
@@ -34,7 +34,18 @@ describe ApiController do
       }
 
       post :create, user_name: user.user_name, run_log: params
-      response.body.should =~ /Invalid date/
+      response.body.should =~ /Invalid date ran/
+    end
+
+    it "provides error message on invalid time ran when adding" do
+      user = create_user
+      params = {
+        time_ran: -1,
+        date_ran: Date.today
+      }
+
+      post :create, user_name: user.user_name, run_log: params
+      response.body.should =~ /Invalid time ran/
     end
   end
 
