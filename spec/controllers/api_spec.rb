@@ -13,6 +13,10 @@ describe ApiController do
       response.body.should == [].to_json
     end
 
+    it "does not crash on invalid delete id" do
+      (get :delete, id: 0)
+    end
+
   end
 
   context "Valid requests" do
