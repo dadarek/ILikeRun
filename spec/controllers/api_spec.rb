@@ -15,6 +15,16 @@ describe ApiController do
       delete :destroy, id: 0
       response.body.should =~ /not found/
     end
+
+    it "provides error message on invalid user when adding" do
+      params = {
+        time_ran: 88,
+        date_ran: Date.today
+      }
+
+      post :create, user_name: 'invalid_user_name', run_log: params
+      response.body.should =~ /not found/
+    end
   end
 
   context "Valid requests" do
@@ -54,7 +64,6 @@ describe ApiController do
 
       post :create, user_name: @user.user_name, run_log: params
       @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
-
     end
 
     def logs_to_json

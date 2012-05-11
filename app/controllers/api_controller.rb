@@ -19,10 +19,16 @@ class ApiController < ApplicationController
   end
 
   def create
-    user = User.find_by_user_name(params[:user_name])
-    attributes = params[:run_log]
-    attributes[:user_id] = user.id
-    RunLog.create!(attributes)
-    render nothing: true
+    user_name = params[:user_name]
+
+    user = User.find_by_user_name user_name
+    if user.nil?
+      render text: "User with user name #{user_name} not found."
+    else
+      attributes = params[:run_log]
+      attributes[:user_id] = user.id
+      RunLog.create!(attributes)
+      render nothing: true
+    end
   end
 end
