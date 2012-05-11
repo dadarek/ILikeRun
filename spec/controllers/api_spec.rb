@@ -56,52 +56,58 @@ describe ApiController do
       @log2 = create_run_log(Date.today - 3.days, 24)
       @logs = [@log1, @log2]
     end
-    
-    it "sends back given users logs" do
-      get :get_user_logs, user_name: @user.user_name
-      response.body.should == logs_to_json
+
+    context "Retrieving logs" do
+      it "sends back given users logs" do
+        get :get_user_logs, user_name: @user.user_name
+        response.body.should == logs_to_json
+      end
+
+      it "ignores case" do
+        get :get_user_logs, user_name: @user.user_name
+        response.body.should == logs_to_json
+      end
+
+      def logs_to_json
+        @logs.to_json( only: [:id, :date_ran, :time_ran])
+      end
     end
 
-    it "ignores case" do
-      get :get_user_logs, user_name: @user.user_name
-      response.body.should == logs_to_json
+    context "Deleting logs" do
+      it "renders a success message on good delete" do
+        delete :destroy, id: @log1.id
+        response.body.should =~ /Success/
+      end
+
+      it "deletes log with given id" do
+        delete :destroy, id: @log1.id
+        RunLog.find_by_id(@log1.id).should be_nil
+      end
     end
 
-    it "renders a success message on good delete" do
-      delete :destroy, id: @log1.id
-      response.body.should =~ /Success/
-    end
+    context "Adding logs" do
+      it "adds logs to specified user" do
+        el_date = Date.today
+        params = {
+          time_ran: 88,
+          date_ran: el_date
+        }
 
-    it "deletes log with given id" do
-      delete :destroy, id: @log1.id
-      RunLog.find_by_id(@log1.id).should be_nil
-    end
+        post :create, user_name: @user.user_name, run_log: params
+        @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
+      end
 
-    it "adds logs to specified user" do
-      el_date = Date.today
-      params = {
-        time_ran: 88,
-        date_ran: el_date
-      }
+      it "displays a success message on successful add" do
+        el_date = Date.today
+        params = {
+          time_ran: 88,
+          date_ran: el_date
+        }
 
-      post :create, user_name: @user.user_name, run_log: params
-      @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
-    end
-
-    it "displays a success message on successful add" do
-      el_date = Date.today
-      params = {
-        time_ran: 88,
-        date_ran: el_date
-      }
-
-      post :create, user_name: @user.user_name, run_log: params
-      @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
-      response.body.should =~ /Success/
-    end
-
-    def logs_to_json
-      @logs.to_json( only: [:id, :date_ran, :time_ran])
+        post :create, user_name: @user.user_name, run_log: params
+        @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
+        response.body.should =~ /Success/
+      end
     end
   end
 end
