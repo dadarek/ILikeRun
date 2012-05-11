@@ -52,12 +52,15 @@ describe ApiController do
   context "Valid requests" do
     before :each do
       @user = create_user
-      @log1 = create_run_log(Date.today, 50)
-      @log2 = create_run_log(Date.today - 3.days, 24)
-      @logs = [@log1, @log2]
     end
 
     context "Retrieving logs" do
+      before :each do
+        @log1 = create_run_log(Date.today, 50)
+        @log2 = create_run_log(Date.today - 3.days, 24)
+        @logs = [@log1, @log2]
+      end
+
       it "sends back given users logs" do
         get :get_user_logs, user_name: @user.user_name
         response.body.should == logs_to_json
@@ -75,37 +78,34 @@ describe ApiController do
 
     context "Deleting logs" do
       it "renders a success message on good delete" do
-        delete :destroy, id: @log1.id
+        log = create_run_log
+        delete :destroy, id: log.id
         response.body.should =~ /Success/
       end
 
       it "deletes log with given id" do
-        delete :destroy, id: @log1.id
-        RunLog.find_by_id(@log1.id).should be_nil
+        log = create_run_log
+        delete :destroy, id: log.id
+        RunLog.find_by_id(log.id).should be_nil
       end
     end
 
     context "Adding logs" do
-      it "adds logs to specified user" do
-        el_date = Date.today
+      def make_post date_ran, time_ran
         params = {
-          time_ran: 88,
-          date_ran: el_date
+          time_ran: time_ran,
+          date_ran: date_ran
         }
 
         post :create, user_name: @user.user_name, run_log: params
-        @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
+      end
+      it "adds logs to specified user" do
+        make_post(Date.today - 1, 13)
+        @user.run_logs.where("date_ran = ? and time_ran = ?", Date.today - 1, 13).count.should == 1
       end
 
       it "displays a success message on successful add" do
-        el_date = Date.today
-        params = {
-          time_ran: 88,
-          date_ran: el_date
-        }
-
-        post :create, user_name: @user.user_name, run_log: params
-        @user.run_logs.where("time_ran = ? and date_ran = ?", 88, el_date).count.should == 1
+        make_post(Date.today, 11)
         response.body.should =~ /Success/
       end
     end
