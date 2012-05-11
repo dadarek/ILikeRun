@@ -34,7 +34,7 @@ describe "route tests" do
 
   it "routes api to api controller" do
     {get: "/api/user_name"}.should route_to( controller: "api", action: "get_user_logs", user_name: "user_name" )
-    {delete: "/api/5"}.should route_to(controller: "api", action: "destroy", id: "5")
+    {post: "/api/delete/5"}.should route_to(controller: "api", action: "destroy", id: "5")
     {post: "/api"}.should route_to "api#create"
   end
 
