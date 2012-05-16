@@ -1,0 +1,19 @@
+
+
+<h1>Add Log</h1>
+<form action="/api" method="post">
+  <input name="run_log[time_ran]" placeholder="time ran" />
+  <br />
+  <input name="run_log[date_ran]" placeholder="date ran" />
+  <br />
+  <input name="user_name" placeholder="user name" />
+  <br />
+  <input type="submit" />
+</form>
+
+<h1>Delete</h1>
+<form action="/api/delete/" method="post" onsubmit="this.action += document.getElementById('logId').value;">
+  <input name="id" id="logId" placeholder="run log ID" />
+  <br />
+  <input type="submit" />
+</form>
